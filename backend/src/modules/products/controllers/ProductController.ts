@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from "@nestjs/common";
-import { GetAllProductsUsecase } from "src/core/usecases/GetAllProducts";
-import { GetProductUseCase } from "src/core/usecases/GetProduct";
+import { GetAllProductsUsecase } from "src/core/usecases/product/GetAllProducts";
+import { GetProductUseCase } from "src/core/usecases/product/GetProduct";
 
 @Controller('products')
 export class ProductController{

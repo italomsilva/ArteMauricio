@@ -16,7 +16,7 @@ CREATE TABLE products (
 
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL,
+    name VARCHAR(36) NOT NULL,
     product_count INT DEFAULT 0
 );
 

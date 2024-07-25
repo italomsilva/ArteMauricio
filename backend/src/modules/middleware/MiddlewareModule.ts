@@ -7,7 +7,7 @@ export class MiddlewareModule{
     configure(consumer:MiddlewareConsumer){
         consumer
         .apply(CheckApiKeyMiddleware)
-        .forRoutes('*')
+        .forRoutes('')
         .apply(CheckLoggedMiddleware)
         .forRoutes('products/2')
     }
