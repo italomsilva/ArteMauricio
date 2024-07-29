@@ -1,20 +1,19 @@
-import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModule} from "@nestjs/typeorm";
 import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { Product } from "src/core/domain/entities/Product";
-import { Category } from "src/core/domain/entities/Category";
 import { ProductSchema } from "./schemas/ProductSchema";
 import { CategorySchema } from "./schemas/CategorySchema";
+import { ProductImageSchema } from "./schemas/ProductImageSchema";
+import { ProductCategorySchema } from "./schemas/ProductCategorySchema";
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [ProductSchema, CategorySchema],
+      entities: [ProductSchema, CategorySchema,ProductImageSchema, ProductCategorySchema],
       autoLoadEntities:true,
       synchronize: true,      
     }),

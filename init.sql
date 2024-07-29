@@ -6,7 +6,7 @@ USE artemauricio;
 
 
 CREATE TABLE products (
-    id CHAR(36) PRIMARY KEY NOT NULL,
+    id VARCHAR(36) PRIMARY KEY NOT NULL,
     title VARCHAR(255) NOT NULL,
     price DOUBLE DEFAULT -3.14,
     description VARCHAR(255) NOT NULL,
@@ -22,13 +22,13 @@ CREATE TABLE categories (
 
 CREATE TABLE product_categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id CHAR(36) NOT NULL,
-    category_name VARCHAR(255) NOT NULL
+    product_id VARCHAR(36) NOT NULL,
+    category_name VARCHAR(36) NOT NULL
 );
 
 CREATE TABLE product_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id CHAR(36) NOT NULL,
+    product_id VARCHAR(36) NOT NULL,
     url VARCHAR(255) NOT NULL,
     `order` INT NOT NULL
 );
