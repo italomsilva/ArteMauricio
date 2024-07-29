@@ -20,7 +20,7 @@ VALUES
     ('3', 'Decoração');
 
 -- Inserir dados na tabela product_images
-INSERT INTO product_images (product_id, image_url, `order`)
+INSERT INTO product_images (product_id, url, `order`)
 VALUES
     ('1', 'https://example.com/cell_phone_holder.jpg', 1),
     ('2', 'https://example.com/display_stand.jpg', 1),

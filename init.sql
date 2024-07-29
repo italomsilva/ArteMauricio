@@ -29,7 +29,7 @@ CREATE TABLE product_categories (
 CREATE TABLE product_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id CHAR(36) NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
     `order` INT NOT NULL
 );
 

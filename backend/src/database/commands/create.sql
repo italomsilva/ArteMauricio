@@ -1,9 +1,11 @@
+-- Deletar o banco de dados se ele já existir
 DROP DATABASE IF EXISTS artemauricio;
 
+-- Criar o banco de dados
 CREATE DATABASE artemauricio;
 
+-- Usar o banco de dados recém-criado
 USE artemauricio;
-
 
 CREATE TABLE products (
     id CHAR(36) PRIMARY KEY NOT NULL,
@@ -14,23 +16,24 @@ CREATE TABLE products (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- Criar a tabela categories
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(36) NOT NULL,
     product_count INT DEFAULT 0
 );
 
+-- Criar a tabela product_categories
 CREATE TABLE product_categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id CHAR(36) NOT NULL,
     category_name VARCHAR(255) NOT NULL
 );
 
+-- Criar a tabela product_images
 CREATE TABLE product_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id CHAR(36) NOT NULL,
-    image_url VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
     `order` INT NOT NULL
 );
-
-
