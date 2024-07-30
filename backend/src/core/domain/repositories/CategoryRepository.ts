@@ -1,9 +1,11 @@
 import { Category } from "../entities/Category";
 
 export interface CategoryRepository {
-    create(input:any):Category;
+    create(categoryName:string):Promise<Category>;
     findAll():Promise<Category[]>;
-    update(category:Category):Promise<Category>;
+    findByName(categoryName:string):Promise<Category>;
+    findById(categoryId:number):Promise<Category>;
+    update(category:Category):Promise<any>;
     save(category:Category):Promise<Category>;
-    delete(category:Category):Promise<any>;
+    delete(categoryId:number):Promise<any>;
 }

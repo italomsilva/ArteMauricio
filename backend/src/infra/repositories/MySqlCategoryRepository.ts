@@ -11,19 +11,25 @@ export class MySqlCategoryRepository implements CategoryRepository {
     @InjectRepository(CategorySchema)
     private readonly categoryRepository: Repository<Category>,
   ) {}
-  create(input: any): Category {
-    throw new Error('Method not implemented.');
+  async create(categoryName:string): Promise<Category> {
+    return await this.categoryRepository.create({ name: categoryName });
+  }
+  async findById(categoryId: number): Promise<Category> {
+    return await this.categoryRepository.findOneBy({id:categoryId});
+  }
+  async findByName(categoryName: string): Promise<Category> {
+    return await this.categoryRepository.findOneBy({name:categoryName});
   }
   async findAll(): Promise<Category[]> {
     return await this.categoryRepository.find();
   }
-  update(category: Category): Promise<Category> {
-    throw new Error('Method not implemented.');
+  async update(category: Category): Promise<any> {
+    return await this.categoryRepository.update({id:category.id}, category)
   }
-  save(category: Category): Promise<Category> {
-    throw new Error('Method not implemented.');
+  async save(category: Category): Promise<Category> {
+    return await this.categoryRepository.save(category);
   }
-  delete(category: Category): Promise<any> {
-    throw new Error('Method not implemented.');
+  async delete(categoryId: number): Promise<any> {
+    return await this.categoryRepository.delete({id: categoryId});
   }
 }
