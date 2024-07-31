@@ -14,6 +14,8 @@ import { MySqlProductCategoryRepository } from 'src/infra/repositories/MySqlProd
 import { CreateCategoryUsecase } from 'src/core/usecases/product/CreateCategory';
 import { EditCategoryUsecase } from 'src/core/usecases/product/EditCategory';
 import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory';
+import { CategoryController } from './controllers/CategoryController';
+import { GetAllCategoriesUseCase } from 'src/core/usecases/product/GetAllCategories';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],
@@ -38,8 +40,9 @@ import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory'
     GetAllProductsUsecase,
     CreateCategoryUsecase,
     EditCategoryUsecase,
-    DeleteCategoryUsecase
+    DeleteCategoryUsecase,
+    GetAllCategoriesUseCase
   ],
-  controllers: [ProductController],
+  controllers: [ProductController, CategoryController],
 })
 export class ProductModule {}
