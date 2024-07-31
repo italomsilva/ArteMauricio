@@ -16,6 +16,7 @@ import { EditCategoryUsecase } from 'src/core/usecases/product/EditCategory';
 import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory';
 import { CategoryController } from './controllers/CategoryController';
 import { GetAllCategoriesUseCase } from 'src/core/usecases/product/GetAllCategories';
+import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/ProductCategoryFilter';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],
@@ -41,7 +42,8 @@ import { GetAllCategoriesUseCase } from 'src/core/usecases/product/GetAllCategor
     CreateCategoryUsecase,
     EditCategoryUsecase,
     DeleteCategoryUsecase,
-    GetAllCategoriesUseCase
+    GetAllCategoriesUseCase,
+    ProductCategoryFilterUseCase
   ],
   controllers: [ProductController, CategoryController],
 })

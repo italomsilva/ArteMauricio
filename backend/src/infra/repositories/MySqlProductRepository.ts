@@ -11,6 +11,12 @@ constructor(
     @InjectRepository(ProductSchema)
     private readonly productRepository:Repository<Product>,
 ){}
+    async findByIds(ids: string[]): Promise<Product[]> {
+        const result = await Promise.all(ids.map(async id =>{
+            return await this.productRepository.findOne({where:{id}})
+        }));
+        return result;
+    }
     async findAll(): Promise<Product[]> {
         const result = await this.productRepository.find();
         return result;

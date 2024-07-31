@@ -17,7 +17,7 @@ export class GetProductUseCase {
   async execute(id: string): Promise<any> {
     const product = await this.productRepository.findById(id);
     if(!product) throw new NotFoundException('PRODUCT NOT FOUND');
-    const productCategories = await this.productCategoryRepository.findAll(product.id);
+    const productCategories = await this.productCategoryRepository.findAllByProductId(product.id);
     const productImages = await this.productImageRepository.findAll(product.id);
     return productFormatter({product, categories: productCategories, images: productImages})
   }

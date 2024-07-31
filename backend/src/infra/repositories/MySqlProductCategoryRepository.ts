@@ -14,9 +14,13 @@ export class MySqlProductCategoryRepository implements ProductCategoryRepository
     create(input: any): ProductCategory {
         throw new Error("Method not implemented.");
     }
-    async findAll(productId: string): Promise<ProductCategory[]> {
+    async findAllByProductId(productId: string): Promise<ProductCategory[]> {
         return await this.productCategoryRepository.find({where:{productId: productId}})
     }
+    async findAllByCategoryName(categoryName: string): Promise<ProductCategory[]> {
+        return await this.productCategoryRepository.find({where:{categoryName}})
+    }
+
     update(productCategory: ProductCategory): Promise<ProductCategory> {
         throw new Error("Method not implemented.");
     }

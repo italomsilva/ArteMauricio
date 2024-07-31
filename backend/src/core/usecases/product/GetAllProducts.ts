@@ -21,7 +21,7 @@ export class GetAllProductsUsecase {
     const result = await Promise.all(
       products.map(async (product) => {
         var productImages = await this.productImageRepository.findAll(product.id);
-        var productCategories = await this.productCategoryRepository.findAll(product.id);
+        var productCategories = await this.productCategoryRepository.findAllByProductId(product.id);
         return productFormatter({
           product: product,
           categories: productCategories,

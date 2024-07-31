@@ -8,17 +8,16 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateCategoryUsecase } from 'src/core/usecases/product/CreateCategory';
-import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory';
-import { EditCategoryUsecase } from 'src/core/usecases/product/EditCategory';
 import { GetAllProductsUsecase } from 'src/core/usecases/product/GetAllProducts';
 import { GetProductUseCase } from 'src/core/usecases/product/GetProduct';
+import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/ProductCategoryFilter';
 
 @Controller('products')
 export class ProductController {
   constructor(
     private readonly getProductUseCase: GetProductUseCase,
     private readonly getAllProductsUseCase: GetAllProductsUsecase,
+    private readonly productCategoryFilterUseCase: ProductCategoryFilterUseCase,
   ) {}
   @Get(':id')
   async getProduct(@Param() params): Promise<any> {
@@ -27,5 +26,9 @@ export class ProductController {
   @Get('')
   async getAllProducts(): Promise<any> {
     return await this.getAllProductsUseCase.execute();
+  }
+  @Post('filter/categories')
+  async filterByCategories(@Body() body):Promise<any>{
+    return await this.productCategoryFilterUseCase.execute(body)
   }
 }
