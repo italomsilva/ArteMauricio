@@ -8,8 +8,10 @@ export function productFormatter(input: {product:Product, categories:ProductCate
         title: input.product.title,
         price: input.product.price,
         categories: input.categories.map(c=>{
-            return c.categoryName
+            return c
         }),
-        capa: input.images[0].url
+        images: input.images.map(i => {
+            return i
+        })
     }
 }
