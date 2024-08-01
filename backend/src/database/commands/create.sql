@@ -14,7 +14,7 @@ CREATE TABLE products (
     description VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    main_photo VARCHAR(255),
+    main_photo VARCHAR(255)
 );
 
 -- Criar a tabela categories
