@@ -3,8 +3,7 @@ import { ProductRepository } from '../../domain/repositories/ProductRepository';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
 import { ProductCategoryRepository } from 'src/core/domain/repositories/ProductCategoryRepository';
 import { productFormatter } from 'src/core/utils/formatters/ProductFormatter';
-import { Category } from 'src/core/domain/entities/Category';
-import { ProductImage } from 'src/core/domain/entities/ProductImage';
+import { CategoryRepository } from 'src/core/domain/repositories/CategoryRepository';
 @Injectable()
 export class GetProductUseCase {
   constructor(
@@ -14,14 +13,19 @@ export class GetProductUseCase {
     private readonly productImageRepository: ProductImageRepository,
     @Inject('productCategoryRepository')
     private readonly productCategoryRepository: ProductCategoryRepository,
+    @Inject('categoryRepository')
+    private readonly categoryRepository: CategoryRepository,
   ) {}
 
-  async execute(id: string): Promise<Output> {
-    const product = await this.productRepository.findById(id);
+  async execute(productId: string): Promise<Output> {
+    const product = await this.productRepository.findById(productId);
     if(!product) throw new NotFoundException('PRODUCT NOT FOUND');
-    const productCategories = await this.productCategoryRepository.findAllByProductId(product.id);
+    const productCategories = await this.productCategoryRepository.findAllByProductId(productId);
+    const categoriesAllData = await Promise.all(productCategories.map(async productCategory =>{
+      return await this.categoryRepository.findByName(productCategory.categoryName)
+    }));
     const productImages = await this.productImageRepository.findAll(product.id);
-    return productFormatter({product, categories: productCategories, images: productImages})
+    return productFormatter({product, categories: categoriesAllData, images: productImages})
   }
 }
 
