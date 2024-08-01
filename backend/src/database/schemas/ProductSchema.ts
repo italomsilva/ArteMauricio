@@ -35,5 +35,11 @@ export const ProductSchema = new EntitySchema<Product>({
       type: 'timestamp',
       updateDate: true,
     },
+    mainPhoto:{
+      name:'main_photo',
+      type:'varchar',
+      length: 255,
+      nullable: true
+    }
   },
 });

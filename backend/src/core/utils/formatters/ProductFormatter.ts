@@ -7,6 +7,7 @@ export function productFormatter(input: {product:Product, categories:ProductCate
         id: input.product.id,
         title: input.product.title,
         price: input.product.price,
+        mainPhoto: input.product.mainPhoto,
         categories: input.categories.map(c=>{
             return c
         }),
