@@ -11,12 +11,12 @@ import { MySqlProductImagesRepository } from 'src/infra/repositories/MySqlProduc
 import { ProductImageSchema } from 'src/database/schemas/ProductImageSchema';
 import { ProductCategorySchema } from 'src/database/schemas/ProductCategorySchema';
 import { MySqlProductCategoryRepository } from 'src/infra/repositories/MySqlProductCategoryRepository';
-import { CreateCategoryUsecase } from 'src/core/usecases/product/CreateCategory';
-import { EditCategoryUsecase } from 'src/core/usecases/product/EditCategory';
-import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory';
+import { CreateCategoryUsecase } from 'src/core/usecases/product/categories/CreateCategory';
+import { EditCategoryUsecase } from 'src/core/usecases/product/categories/EditCategory';
+import { DeleteCategoryUsecase } from 'src/core/usecases/product/categories/DeleteCategory';
 import { CategoryController } from './controllers/CategoryController';
-import { GetAllCategoriesUseCase } from 'src/core/usecases/product/GetAllCategories';
-import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/ProductCategoryFilter';
+import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/GetAllCategories';
+import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/categories/ProductCategoryFilter';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],

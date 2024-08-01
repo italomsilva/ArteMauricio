@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { GetAllProductsUsecase } from 'src/core/usecases/product/GetAllProducts';
 import { GetProductUseCase } from 'src/core/usecases/product/GetProduct';
-import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/ProductCategoryFilter';
+import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/categories/ProductCategoryFilter';
 
 @Controller('products')
 export class ProductController {

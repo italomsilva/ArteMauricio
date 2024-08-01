@@ -16,12 +16,15 @@ export class GetAllProductsUsecase {
     private readonly productCategoryRepository: ProductCategoryRepository,
   ) {}
 
-  async execute(): Promise<any> {
+  async execute(): Promise<Output> {
     const products = await this.productRepository.findAll();
     const result = await Promise.all(
       products.map(async (product) => {
-        var productImages = await this.productImageRepository.findAll(product.id);
-        var productCategories = await this.productCategoryRepository.findAllByProductId(product.id);
+        var productImages = await this.productImageRepository.findAll(
+          product.id,
+        );
+        var productCategories =
+          await this.productCategoryRepository.findAllByProductId(product.id);
         return productFormatter({
           product: product,
           categories: productCategories,
@@ -29,6 +32,14 @@ export class GetAllProductsUsecase {
         });
       }),
     );
-    return { result: result };
+    return {
+      result: result,
+      totalResults: result.length,
+    };
   }
 }
+
+type Output = {
+  result: Product[];
+  totalResults: number;
+};

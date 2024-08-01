@@ -6,10 +6,10 @@ import {
     Post,
     Put,
   } from '@nestjs/common';
-  import { CreateCategoryUsecase } from 'src/core/usecases/product/CreateCategory';
-  import { DeleteCategoryUsecase } from 'src/core/usecases/product/DeleteCategory';
-  import { EditCategoryUsecase } from 'src/core/usecases/product/EditCategory';
-import { GetAllCategoriesUseCase } from 'src/core/usecases/product/GetAllCategories';
+  import { CreateCategoryUsecase } from 'src/core/usecases/product/categories/CreateCategory';
+  import { DeleteCategoryUsecase } from 'src/core/usecases/product/categories/DeleteCategory';
+  import { EditCategoryUsecase } from 'src/core/usecases/product/categories/EditCategory';
+import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/GetAllCategories';
   
   @Controller('categories')
   export class CategoryController {

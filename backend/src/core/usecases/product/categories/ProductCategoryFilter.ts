@@ -12,7 +12,7 @@ export class ProductCategoryFilterUseCase{
         private readonly productCategoryRepository: ProductCategoryRepository,
     ){}
 
-    async execute(input:Input):Promise<Product[]>{
+    async execute(input:Input):Promise<Output>{
         const productIds = await Promise.all(input.categories.map(async c =>{
             const productCategories = await this.productCategoryRepository.findAllByCategoryName(c);
             const ids = productCategories.map(pc => {
@@ -24,10 +24,17 @@ export class ProductCategoryFilterUseCase{
             return acc.filter(id => arr.includes(id))
         })
         const products = await this.productRepository.findByIds(filteredIds);
-        return products;
+        return {
+            result: products,
+            totalResults: products.length
+        };
     }
 }
 
 type Input = {
     categories:string[]
+}
+type Output = {
+    result: Product[];
+    totalResults: number; 
 }

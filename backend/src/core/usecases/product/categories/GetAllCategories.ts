@@ -7,8 +7,16 @@ export class GetAllCategoriesUseCase{
     constructor(
         @Inject('categoryRepository') private readonly categoryRepository:CategoryRepository
     ){}
-    async execute():Promise<Category[]>{
+    async execute():Promise<Output>{
         const result = await this.categoryRepository.findAll();
-        return result;
+        return {
+            result: result,
+            totalResults: result.length
+        };
     }
+}
+
+type Output = {
+    result: Category[];
+    totalResults: number; 
 }

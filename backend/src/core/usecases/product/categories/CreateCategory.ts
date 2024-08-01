@@ -33,3 +33,4 @@ export class CreateCategoryUsecase {
 type Input = {
   categoryName: string;
 };
+
