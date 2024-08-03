@@ -17,6 +17,10 @@ import { DeleteCategoryUsecase } from 'src/core/usecases/product/categories/Dele
 import { CategoryController } from './controllers/CategoryController';
 import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/GetAllCategories';
 import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/categories/ProductCategoryFilter';
+import { AddImageUseCase } from 'src/core/usecases/product/images/AddImage';
+import { ImageController } from './controllers/ImageController';
+import { ChangeImageOrderUseCase } from 'src/core/usecases/product/images/ChangeImageOrder';
+import { DeleteImageUseCase } from 'src/core/usecases/product/images/DeleteImage';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],
@@ -43,8 +47,11 @@ import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/categori
     EditCategoryUsecase,
     DeleteCategoryUsecase,
     GetAllCategoriesUseCase,
-    ProductCategoryFilterUseCase
+    ProductCategoryFilterUseCase,
+    AddImageUseCase,
+    ChangeImageOrderUseCase,
+    DeleteImageUseCase
   ],
-  controllers: [ProductController, CategoryController],
+  controllers: [ProductController, CategoryController, ImageController],
 })
 export class ProductModule {}

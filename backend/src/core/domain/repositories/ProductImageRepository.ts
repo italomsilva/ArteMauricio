@@ -1,9 +1,10 @@
 import { ProductImage } from "../entities/ProductImage";
 
 export interface ProductImageRepository{
-    create(input:any):ProductImage;
+    create(input:any):Promise<ProductImage>;
     findAll(productId:string):Promise<ProductImage[]>;
-    update(productImage:ProductImage):Promise<ProductImage>;
+    findById(productImageId:number):Promise<ProductImage>;
+    update(productImageId:number,productImage:Partial<ProductImage>):Promise<void>;
     save(productImage:ProductImage):Promise<ProductImage>;
-    delete(productImage:ProductImage):Promise<any>;
+    delete(productImageId:number):Promise<any>;
 }

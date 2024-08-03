@@ -24,8 +24,9 @@ constructor(
     findByCategories(category: string[]): Promise<Product[]> {
         throw new Error("Method not implemented.");
     }
-    save(product: Product): boolean {
-        throw new Error("Method not implemented.");
+    async save(product: Product): Promise<Product> {
+        const result = await this.productRepository.save(product);
+        return result;
     }
     edit(product: Product): boolean {
         throw new Error("Method not implemented.");

@@ -10,19 +10,22 @@ export class MySqlProductImagesRepository implements ProductImageRepository{
     constructor(
         @InjectRepository(ProductImageSchema) private productImagesRepository:Repository<ProductImage>
     ){}
-    create(input: any): ProductImage {
-        throw new Error("Method not implemented.");
+    async findById(productImageId: number): Promise<ProductImage> {
+        return await this.productImagesRepository.findOne({where:{id: productImageId}});
+    }
+    async create(input: any): Promise<ProductImage> {
+        return await this.productImagesRepository.create({order:input.order, productId:input.productId, url:input.url})
     }
     async findAll(productId:string): Promise<ProductImage[]> {
         return await this.productImagesRepository.find({where:{productId: productId}})
     }
-    update(productImage: ProductImage): Promise<ProductImage> {
-        throw new Error("Method not implemented.");
+    async update(productImageId:number, productImage: Partial<ProductImage>):Promise<void>{
+    await this.productImagesRepository.update({id: productImageId},productImage)
     }
-    save(productImage: ProductImage): Promise<ProductImage> {
-        throw new Error("Method not implemented.");
+    async save(productImage: ProductImage): Promise<ProductImage> {
+        return await this.productImagesRepository.save(productImage);
     }
-    delete(productImage: ProductImage): Promise<any> {
-        throw new Error("Method not implemented.");
+    async delete(productImageId: number): Promise<any> {
+        return await this.productImagesRepository.delete({id:productImageId})
     }
 }

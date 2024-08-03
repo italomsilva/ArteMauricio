@@ -1,5 +1,5 @@
 export class ProductImage{
-    id:string;
+    id:number;
     productId:string;
     url:string;
     order:number;
