@@ -27,8 +27,8 @@ export class MySqlProductCategoryRepository implements ProductCategoryRepository
     save(productCategory: ProductCategory): Promise<ProductCategory> {
         throw new Error("Method not implemented.");
     }
-    delete(productCategory: ProductCategory): Promise<any> {
-        throw new Error("Method not implemented.");
+    async delete(productCategoryId: number): Promise<any> {
+        await this.productCategoryRepository.delete({id: productCategoryId})
     }
 
 }

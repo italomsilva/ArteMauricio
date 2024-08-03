@@ -6,5 +6,5 @@ export interface ProductCategoryRepository{
     findAllByCategoryName(categoryName:string):Promise<ProductCategory[]>;
     update(productCategory:ProductCategory):Promise<ProductCategory>;
     save(productCategory:ProductCategory):Promise<ProductCategory>;
-    delete(productCategory:ProductCategory):Promise<any>;
+    delete(productCategoryId:number):Promise<any>;
 }

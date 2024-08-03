@@ -11,6 +11,14 @@ constructor(
     @InjectRepository(ProductSchema)
     private readonly productRepository:Repository<Product>,
 ){}
+    async create(productData: any): Promise<Product> {
+        return await this.productRepository.create({
+            title:productData.title,
+            description:productData.description,
+            price:productData.price,
+            mainPhoto:productData.mainPhoto
+        });
+    }
     async findByIds(ids: string[]): Promise<Product[]> {
         const result = await Promise.all(ids.map(async id =>{
             return await this.productRepository.findOne({where:{id}})
@@ -28,11 +36,11 @@ constructor(
         const result = await this.productRepository.save(product);
         return result;
     }
-    edit(product: Product): boolean {
-        throw new Error("Method not implemented.");
+    async update(productId:string, productData: Partial<Product>):Promise<any> {
+        return await this.productRepository.update({id: productId},productData);
     }
-    delete(product: Product): boolean {
-        throw new Error("Method not implemented.");
+    async delete(productId: string): Promise<any> {
+        await this.productRepository.delete({id: productId})
     }
     async findById(id: string): Promise<Product> {
         const result = await this.productRepository.findOne({where:{id:id}})
