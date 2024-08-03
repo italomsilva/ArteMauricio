@@ -39,6 +39,7 @@ export class DeleteProductUseCase {
         ),
         await this.productRepository.delete(input.productId),
       ]);
+      return {sucess: true}
     } catch (error) {
       throw new InternalServerErrorException('Error deleting');
     }
