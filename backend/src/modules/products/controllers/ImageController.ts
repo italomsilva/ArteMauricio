@@ -16,7 +16,7 @@ export class ImageController{
         const result = await this.addImageUseCase.execute(body)
         return result;
     }
-    @Patch('change-order')
+    @Patch('change-image-order')
     async changeOrder(@Body() body): Promise<any>{
         const result = await this.changeImageOrderUseCase.execute(body)
         return result;

@@ -7,8 +7,20 @@ export class MiddlewareModule{
     configure(consumer:MiddlewareConsumer){
         consumer
         .apply(CheckApiKeyMiddleware)
-        .forRoutes('')
+        .forRoutes('*')
         .apply(CheckLoggedMiddleware)
-        .forRoutes('products/2')
+        .forRoutes(
+            'products/create',
+            'products/edit',
+            'products/delete',
+            'product/add-image',
+            'product/change-image-order',
+            'product/delete-image',
+            'categories/create',
+            'categories/edit',
+            'categories/delete',
+            'categories/product/add',
+            'categories/product/delete',
+        )
     }
 }
