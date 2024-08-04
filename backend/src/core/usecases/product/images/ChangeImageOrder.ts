@@ -1,5 +1,6 @@
 import { ConflictException, Inject, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { ProductImageRepository } from "src/core/domain/repositories/ProductImageRepository";
+import { Validator } from "src/core/utils/validators/Validator";
 
 @Injectable()
 export class ChangeImageOrderUseCase {
@@ -9,6 +10,14 @@ export class ChangeImageOrderUseCase {
   ) {}
 
   async execute(input:Input):Promise<Output>{
+    const requiredfields = {
+      fields: {
+        productId: { require: true },
+        imageUrl: { require: true },
+        order: { require: true }
+      },
+    };
+    Validator.validateInput(input, requiredfields);
     const productImages = await this.productImageRepository.findAll(input.productId);
     const productImage = productImages.find(productImage => productImage.id==input.imageId);
     if(!productImage) throw new NotFoundException('Image Not Found');

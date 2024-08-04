@@ -8,6 +8,7 @@ import {
 import { ProductImage } from 'src/core/domain/entities/ProductImage';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
 import { ProductRepository } from 'src/core/domain/repositories/ProductRepository';
+import { Validator } from 'src/core/utils/validators/Validator';
 
 @Injectable()
 export class AddImageUseCase {
@@ -19,6 +20,14 @@ export class AddImageUseCase {
   ) {}
 
   async execute(input: Input): Promise<Output> {
+    const requiredfields = {
+      fields: {
+        productId: { require: true },
+        imageUrl: { require: true },
+        imageOrder: { require: true }
+      },
+    };
+    Validator.validateInput(input, requiredfields);
     const product = await this.productRepository.findById(input.productId);
     if (!product) throw new NotFoundException('PRODUCT NOT FOUND');
     const productImages = await this.productImageRepository.findAll(

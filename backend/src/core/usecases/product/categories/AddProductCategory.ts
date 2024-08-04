@@ -2,6 +2,7 @@ import { ConflictException, Inject, Injectable, InternalServerErrorException, No
 import { ProductCategory } from "src/core/domain/entities/ProductCategory";
 import { CategoryRepository } from "src/core/domain/repositories/CategoryRepository";
 import { ProductCategoryRepository } from "src/core/domain/repositories/ProductCategoryRepository";
+import { Validator } from "src/core/utils/validators/Validator";
 
 @Injectable()
 export class AddProductCategoryUseCase{
@@ -14,6 +15,11 @@ export class AddProductCategoryUseCase{
     ){}
 
     async execute(input:Input):Promise<Output>{
+        const requiredfields = {fields:{
+                productId:{require: true},
+                categoryName:{require: true}
+        }};
+        Validator.validateInput(input, requiredfields);
         const category = await this.categoryRepository.findByName(input.categoryName);
         if(!category) throw new NotFoundException('Category Not Found');
         const productCategories = await this.productCategoryRepository.findAllByProductId(input.productId);

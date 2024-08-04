@@ -7,6 +7,7 @@ import {
 import { ProductCategoryRepository } from 'src/core/domain/repositories/ProductCategoryRepository';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
 import { ProductRepository } from 'src/core/domain/repositories/ProductRepository';
+import { Validator } from 'src/core/utils/validators/Validator';
 
 @Injectable()
 export class DeleteProductUseCase {
@@ -20,6 +21,14 @@ export class DeleteProductUseCase {
   ) {}
 
   async execute(input: Input): Promise<Output> {
+    const requiredfields = {
+      fields: {
+        productId: { require: true },
+      },
+    };
+    Validator.validateInput(input, requiredfields);
+
+
     const product = await this.productRepository.findById(input.productId);
     const productCategories =
       await this.productCategoryRepository.findAllByProductId(input.productId);

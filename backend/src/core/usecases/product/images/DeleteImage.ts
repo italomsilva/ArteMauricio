@@ -1,5 +1,6 @@
 import { Injectable, Inject, NotFoundException, InternalServerErrorException, BadRequestException } from "@nestjs/common";
 import { ProductImageRepository } from "src/core/domain/repositories/ProductImageRepository";
+import { Validator } from "src/core/utils/validators/Validator";
 
 @Injectable()
 export class DeleteImageUseCase {
@@ -9,6 +10,13 @@ export class DeleteImageUseCase {
   ) {}
 
   async execute(input:Input):Promise<Output>{
+    const requiredfields = {
+      fields: {
+        productId: { require: true },
+        imageId: { require: true }
+      },
+    };
+    Validator.validateInput(input, requiredfields);
     const productImage = await this.productImageRepository.findById(input.imageId);
     if(!productImage) throw new NotFoundException('Image Not Found');
     if(productImage.productId != input.productId) throw new BadRequestException('Invalid ProductId or ImageId');

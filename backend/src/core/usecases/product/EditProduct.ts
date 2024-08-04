@@ -1,6 +1,7 @@
 import { Inject, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { Product } from "src/core/domain/entities/Product";
 import { ProductRepository } from "src/core/domain/repositories/ProductRepository";
+import { Validator } from "src/core/utils/validators/Validator";
 
 @Injectable()
 export class EditProductUseCase{
@@ -9,6 +10,12 @@ export class EditProductUseCase{
     ){}
 
     async execute(input:Input):Promise<Output>{
+        const requiredfields = {
+            fields: {
+              productId: { require: true }
+            },
+          };
+          Validator.validateInput(input, requiredfields);
         const product = await this.productRepository.findById(input.productId);
         if(!product) throw new NotFoundException('Product Not found');
         if(input.title && input.title != undefined && input.title != null){

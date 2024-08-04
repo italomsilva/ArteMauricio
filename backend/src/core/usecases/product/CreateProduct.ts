@@ -1,6 +1,7 @@
 import { Inject, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { Product } from "src/core/domain/entities/Product";
 import { ProductRepository } from "src/core/domain/repositories/ProductRepository";
+import { Validator } from "src/core/utils/validators/Validator";
 
 @Injectable()
 export class CreateProductUseCase{
@@ -9,6 +10,13 @@ export class CreateProductUseCase{
     ){}
 
     async execute(input:Input):Promise<Output>{
+        const requiredfields = {
+            fields: {
+              title: { require: true },
+              price: { require: true }
+            },
+          };
+          Validator.validateInput(input, requiredfields);      
         const newProduct = await this.productRepository.create({
             title:input.title,
             price:input.price,
@@ -27,8 +35,8 @@ export class CreateProductUseCase{
 type Input = {
     title:string;
     price:number;
-    description:string;
-    mainPhoto:string;
+    description?:string;
+    mainPhoto?:string;
 }
 
 type Output = {
