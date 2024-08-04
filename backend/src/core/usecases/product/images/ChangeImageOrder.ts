@@ -1,6 +1,5 @@
 import { ConflictException, Inject, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { ProductImageRepository } from "src/core/domain/repositories/ProductImageRepository";
-import { ProductRepository } from "src/core/domain/repositories/ProductRepository";
 
 @Injectable()
 export class ChangeImageOrderUseCase {
@@ -9,7 +8,7 @@ export class ChangeImageOrderUseCase {
     private readonly productImageRepository: ProductImageRepository,
   ) {}
 
-  async execute(input:Input):Promise<any>{
+  async execute(input:Input):Promise<Output>{
     const productImages = await this.productImageRepository.findAll(input.productId);
     const productImage = productImages.find(productImage => productImage.id==input.imageId);
     if(!productImage) throw new NotFoundException('Image Not Found');
@@ -19,7 +18,7 @@ export class ChangeImageOrderUseCase {
         await this.productImageRepository.update(input.imageId,{order:input.order})
         return{sucess: true}
     } catch (error) {
-        throw new InternalServerErrorException("Error updating")
+        throw new InternalServerErrorException(`Data Edit Error: ${error}`)
     }
   }
 }
@@ -28,4 +27,8 @@ type Input = {
     productId:string;
     imageId:number;
     order:number;
+}
+
+type Output = {
+  sucess: boolean
 }

@@ -3,7 +3,6 @@ import { ProductRepository } from '../../domain/repositories/ProductRepository';
 import { Product } from '../../domain/entities/Product';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
 import { ProductCategoryRepository } from 'src/core/domain/repositories/ProductCategoryRepository';
-import { productFormatter } from 'src/core/utils/formatters/ProductFormatter';
 
 @Injectable()
 export class GetAllProductsUsecase {

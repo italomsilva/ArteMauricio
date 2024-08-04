@@ -1,4 +1,5 @@
 import { Inject, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import { Product } from "src/core/domain/entities/Product";
 import { ProductRepository } from "src/core/domain/repositories/ProductRepository";
 
 @Injectable()
@@ -7,7 +8,7 @@ export class EditProductUseCase{
         @Inject('productRepository') private readonly productRepository:ProductRepository,
     ){}
 
-    async execute(input:Input):Promise<any>{
+    async execute(input:Input):Promise<Output>{
         const product = await this.productRepository.findById(input.productId);
         if(!product) throw new NotFoundException('Product Not found');
         if(input.title && input.title != undefined && input.title != null){
@@ -30,9 +31,9 @@ export class EditProductUseCase{
                 mainPhoto: product.mainPhoto
             });
         } catch (error) {
-            throw new InternalServerErrorException('Error editing')
+            throw new InternalServerErrorException(`Data Edit Error: ${error}`)
         }
-        return product;
+        return {result: product};
     }
 }
 
@@ -42,5 +43,8 @@ type Input = {
     price?:number;
     description?:string;
     mainPhoto?:string
-
 }
+
+type Output = {
+    result: Product
+  }

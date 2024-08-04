@@ -13,7 +13,7 @@ export class CreateCategoryUsecase {
     @Inject('categoryRepository')
     private readonly categoryRepository: CategoryRepository,
   ) {}
-  async execute(input: Input): Promise<Category> {
+  async execute(input: Input): Promise<Output> {
     const category = await this.categoryRepository.findByName(
       input.categoryName,
     );
@@ -24,13 +24,17 @@ export class CreateCategoryUsecase {
     try {
       await this.categoryRepository.save(newCategory);
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      throw new InternalServerErrorException(`Data Save Error: ${error}`);
     }
-    return newCategory;
+    return {result: newCategory};
   }
 }
 
 type Input = {
   categoryName: string;
 };
+type Output = {
+  result: Category;
+}
+
 

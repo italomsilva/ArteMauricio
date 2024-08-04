@@ -7,11 +7,15 @@ export class LoginUseCase{
         @Inject('authTokenGateway') private readonly authTokenGateway:AuthTokenGateway
     ){}
 
-    async execute(input:Payload):Promise<string>{
+    async execute(input:Payload):Promise<Output>{
         if(input.login != process.env.ADMIN_LOGIN || input.password != process.env.ADMIN_PASSWORD){
             throw new UnauthorizedException('INVALID LOGIN OR PASSWORD');
         }
-        return await this.authTokenGateway.signIn(input);
+        const result = await this.authTokenGateway.signIn(input);
+        return { result };
     }
 }
 
+type Output = {
+    result: string;
+}

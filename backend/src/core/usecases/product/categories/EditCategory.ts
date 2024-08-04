@@ -7,7 +7,7 @@ export class EditCategoryUsecase{
     constructor(
         @Inject('categoryRepository') private readonly categoryRepository:CategoryRepository
     ){}
-    async execute(input:Input):Promise<Category>{
+    async execute(input:Input):Promise<Output>{
         const category = await this.categoryRepository.findById(input.id);
         if(!category) throw new NotFoundException('Category Not Found');
         if(input.productCount){
@@ -20,9 +20,9 @@ export class EditCategoryUsecase{
         try {
             await this.categoryRepository.update(category);
         } catch (error) {
-            throw new InternalServerErrorException(error)
+            throw new InternalServerErrorException(`Data Edit Error: ${error}`)
         }
-        return category;
+        return {result: category};
     }
 }
 
@@ -30,4 +30,8 @@ type Input = {
     id:number;
     newName?:string;
     productCount?:number;
+}
+
+type Output = {
+    result: Category;
 }

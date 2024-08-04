@@ -13,7 +13,7 @@ export class AddProductCategoryUseCase{
 
     ){}
 
-    async execute(input:Input):Promise<ProductCategory>{
+    async execute(input:Input):Promise<Output>{
         const category = await this.categoryRepository.findByName(input.categoryName);
         if(!category) throw new NotFoundException('Category Not Found');
         const productCategories = await this.productCategoryRepository.findAllByProductId(input.productId);
@@ -33,13 +33,16 @@ export class AddProductCategoryUseCase{
             category.productCount = (category.productCount)+1;
             await this.categoryRepository.save(category);
         } catch (error) {
-            throw new InternalServerErrorException('Error saving')
+            throw new InternalServerErrorException(`Data Save Error: ${error}`)
         }
-        return newProductCategory;
+        return {result: newProductCategory};
     }
 }
 
 type Input = {
     productId:string;
     categoryName:string;
+}
+type Output = {
+    result: ProductCategory;
 }

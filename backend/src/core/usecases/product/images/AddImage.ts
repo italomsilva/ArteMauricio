@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   ConflictException,
   Inject,
   Injectable,
@@ -26,9 +25,7 @@ export class AddImageUseCase {
       input.productId,
     );
     if (productImages.length > 10)
-      throw new InternalServerErrorException(
-        'Too many images for one product! Limit: 10'
-      );
+      throw new InternalServerErrorException('Too many images for one product! Limit: 10');
     const newImage = await this.productImageRepository.create({
       productId: input.productId,
       url: input.imageUrl,
@@ -37,9 +34,12 @@ export class AddImageUseCase {
     const hasSameOrder = productImages.some(
       (productImage) => productImage.order === newImage.order
     );
-    if (hasSameOrder)
-      throw new ConflictException('An image with this order already exists');
-    await this.productImageRepository.save(newImage);
+    if (hasSameOrder) throw new ConflictException('An image with this order already exists');
+    try {
+      await this.productImageRepository.save(newImage);
+    } catch (error) {
+      throw new InternalServerErrorException(`Data Save Error: ${error}`)
+    }
     const sortedProductImages = productImages.sort((a, b) => a.order - b.order);
     return {
       result: sortedProductImages,

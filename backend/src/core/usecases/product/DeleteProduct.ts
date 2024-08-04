@@ -19,7 +19,7 @@ export class DeleteProductUseCase {
     private readonly productCategoryRepository: ProductCategoryRepository,
   ) {}
 
-  async execute(input: Input): Promise<any> {
+  async execute(input: Input): Promise<Output> {
     const product = await this.productRepository.findById(input.productId);
     const productCategories =
       await this.productCategoryRepository.findAllByProductId(input.productId);
@@ -41,7 +41,7 @@ export class DeleteProductUseCase {
       ]);
       return {sucess: true}
     } catch (error) {
-      throw new InternalServerErrorException('Error deleting');
+      throw new InternalServerErrorException(`Data Delete Error: ${error}`);
     }
   }
 }
@@ -49,3 +49,7 @@ export class DeleteProductUseCase {
 type Input = {
   productId: string;
 };
+
+type Output = {
+  sucess: boolean
+}

@@ -8,7 +8,7 @@ export class DeleteImageUseCase {
     private readonly productImageRepository: ProductImageRepository,
   ) {}
 
-  async execute(input:Input):Promise<any>{
+  async execute(input:Input):Promise<Output>{
     const productImage = await this.productImageRepository.findById(input.imageId);
     if(!productImage) throw new NotFoundException('Image Not Found');
     if(productImage.productId != input.productId) throw new BadRequestException('Invalid ProductId or ImageId');
@@ -16,7 +16,7 @@ export class DeleteImageUseCase {
         await this.productImageRepository.delete(productImage.id);
         return {sucess: true};
     } catch (error) {
-        throw new InternalServerErrorException('Error deleting');
+        throw new InternalServerErrorException(`Data Delete Error: ${error}`);
     }
   }
 }
@@ -24,4 +24,7 @@ export class DeleteImageUseCase {
 type Input = {
     productId:string;
     imageId:number;
+}
+type Output = {
+  sucess: boolean
 }

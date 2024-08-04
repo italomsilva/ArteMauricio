@@ -12,7 +12,7 @@ export class DeleteCategoryUsecase{
         try {
             await this.categoryRepository.delete(input.id);
         } catch (error) {
-            throw new InternalServerErrorException(error)
+            throw new InternalServerErrorException(`Data Delete Error: ${error}`)
         }
         return {
             sucess:true

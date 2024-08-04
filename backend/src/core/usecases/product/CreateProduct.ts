@@ -1,6 +1,5 @@
 import { Inject, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { Product } from "src/core/domain/entities/Product";
-import { ProductCategoryRepository } from "src/core/domain/repositories/ProductCategoryRepository";
 import { ProductRepository } from "src/core/domain/repositories/ProductRepository";
 
 @Injectable()
@@ -9,7 +8,7 @@ export class CreateProductUseCase{
         @Inject('productRepository') private readonly productRepository:ProductRepository
     ){}
 
-    async execute(input:Input):Promise<Product>{
+    async execute(input:Input):Promise<Output>{
         const newProduct = await this.productRepository.create({
             title:input.title,
             price:input.price,
@@ -19,9 +18,9 @@ export class CreateProductUseCase{
         try {
             await this.productRepository.save(newProduct);
         } catch (error) {
-            throw new InternalServerErrorException('Error saving')
+            throw new InternalServerErrorException(`Data Save Error: ${error}`)
         }
-        return newProduct;
+        return {result:newProduct};
     }
 }
 
@@ -31,3 +30,7 @@ type Input = {
     description:string;
     mainPhoto:string;
 }
+
+type Output = {
+    result: Product
+  }
