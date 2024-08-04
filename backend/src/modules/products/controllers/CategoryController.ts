@@ -6,8 +6,10 @@ import {
     Post,
     Put,
   } from '@nestjs/common';
+import { AddProductCategoryUseCase } from 'src/core/usecases/product/categories/AddProductCategory';
   import { CreateCategoryUsecase } from 'src/core/usecases/product/categories/CreateCategory';
   import { DeleteCategoryUsecase } from 'src/core/usecases/product/categories/DeleteCategory';
+import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categories/DeleteProductCategory';
   import { EditCategoryUsecase } from 'src/core/usecases/product/categories/EditCategory';
 import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/GetAllCategories';
   
@@ -17,11 +19,13 @@ import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/Ge
       private readonly createCategoryUseCase: CreateCategoryUsecase,
       private readonly editCategoryUseCase: EditCategoryUsecase,
       private readonly deleteCategoryUseCase: DeleteCategoryUsecase,
-      private readonly GetAllCategoriesUseCase: GetAllCategoriesUseCase,
+      private readonly getAllCategoriesUseCase: GetAllCategoriesUseCase,
+      private readonly addProductCategoryUseCase:AddProductCategoryUseCase, 
+      private readonly deleteProductCategoryUseCase:DeleteProductCategoryUsecase 
     ) {}
     @Get('')
     async GetAllCategories():Promise<any>{
-        const result = await this.GetAllCategoriesUseCase.execute();
+        const result = await this.getAllCategoriesUseCase.execute();
         return result;  
     }
     @Post('create')
@@ -39,6 +43,19 @@ import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/Ge
       const result = await this.deleteCategoryUseCase.execute(body);
       return result;
     }
+
+    @Delete('product/delete')
+    async deleteProductCategory(@Body() body): Promise<any> {
+      const result = await this.deleteProductCategoryUseCase.execute(body);
+      return result;
+    }
+
+    @Post('product/add')
+    async addProductCategory(@Body() body): Promise<any> {
+      const result = await this.addProductCategoryUseCase.execute(body);
+      return result;
+    }
+
   
   }
   

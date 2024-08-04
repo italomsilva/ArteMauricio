@@ -11,8 +11,13 @@ export class MySqlProductCategoryRepository implements ProductCategoryRepository
         @InjectRepository(ProductCategorySchema)
             private productCategoryRepository:Repository<ProductCategory>
     ){}
-    create(input: any): ProductCategory {
-        throw new Error("Method not implemented.");
+    async findById(productCategoryId: number): Promise<ProductCategory> {
+        return await this.productCategoryRepository.findOne({where:{id: productCategoryId}})
+    }
+    async create(input: any): Promise<ProductCategory> {
+        return await this.productCategoryRepository.create({
+            categoryName:input.categoryName, productId:input.productId
+        })
     }
     async findAllByProductId(productId: string): Promise<ProductCategory[]> {
         return await this.productCategoryRepository.find({where:{productId: productId}})
@@ -24,11 +29,11 @@ export class MySqlProductCategoryRepository implements ProductCategoryRepository
     update(productCategory: ProductCategory): Promise<ProductCategory> {
         throw new Error("Method not implemented.");
     }
-    save(productCategory: ProductCategory): Promise<ProductCategory> {
-        throw new Error("Method not implemented.");
+    async save(productCategory: ProductCategory): Promise<ProductCategory> {
+        return await this.productCategoryRepository.save(productCategory);
     }
     async delete(productCategoryId: number): Promise<any> {
-        await this.productCategoryRepository.delete({id: productCategoryId})
+        return await this.productCategoryRepository.delete({id: productCategoryId})
     }
 
 }

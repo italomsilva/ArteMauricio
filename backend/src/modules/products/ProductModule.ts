@@ -24,6 +24,8 @@ import { DeleteImageUseCase } from 'src/core/usecases/product/images/DeleteImage
 import { CreateProductUseCase } from 'src/core/usecases/product/CreateProduct';
 import { EditProductUseCase } from 'src/core/usecases/product/EditProduct';
 import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
+import { AddProductCategoryUseCase } from 'src/core/usecases/product/categories/AddProductCategory';
+import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categories/DeleteProductCategory';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],
@@ -54,6 +56,8 @@ import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
     DeleteCategoryUsecase,
     GetAllCategoriesUseCase,
     ProductCategoryFilterUseCase,
+    AddProductCategoryUseCase,
+    DeleteProductCategoryUsecase,
     AddImageUseCase,
     ChangeImageOrderUseCase,
     DeleteImageUseCase
