@@ -20,7 +20,7 @@ export class CheckLoggedMiddleware implements NestMiddleware{
             }
             next();
         } catch (error) {
-            return res.status(400).send({ error: 'invalid session' });
+            return res.status(400).send({ error: 'Invalid token', message: error });
         }
     }
 
