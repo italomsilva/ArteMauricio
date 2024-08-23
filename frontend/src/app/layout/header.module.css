@@ -1,0 +1,84 @@
+.navbar{
+    background-color: var(--cor-dark);
+    position: fixed;
+    inline-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0.6rem;
+    z-index: 10;
+}
+
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu_burguer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    inline-size: 2.8rem;
+    block-size: 2.8rem;
+    z-index: 100;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.menu_burguer span{
+    background-color: #4dd3cb;
+    content: "";
+    display: block;
+    inline-size: 100%;
+    block-size: 3px;
+    transition: all 0.5s;
+}
+
+.navbar menu {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    background-color: var(--cor-dark);
+    inline-size: 50vw;
+    block-size: 100vh;
+    inset-block-start: 0;
+    inset-inline-end: -60vw;
+    transition: all 0.5s;
+    row-gap: 2.4rem;
+}
+
+.navbar menu li a{
+    color: #4dd3cb;
+    font-size: 1.2rem;
+}
+.navbar menu li a:hover{
+    color: #4dd3cb89;
+}
+
+.nav_logo img {
+    inline-size: 2.8rem;
+}
+
+.navbar .menuactive ~ .menu_burguer{
+    gap: 0;
+}
+
+.navbar .menuactive ~ .menu_burguer :nth-child(2){
+    display: none;
+}
+.navbar .menuactive ~ .menu_burguer :nth-child(1){
+    transform: rotate(45deg);
+}
+.navbar .menuactive ~ .menu_burguer :nth-child(3){
+    transform: rotate(-45deg);
+}
+
+.navbar .menuactive{
+    inset-inline-end: 0;
+}
