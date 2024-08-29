@@ -83,6 +83,9 @@
 .icon_arrow{
    color: #fff;
    font-size: 1.8rem;
+   position: relative;
+   transform: rotate(0deg);
+   transition: 0.5s;
 }
 
 .li_cont_two {
@@ -98,4 +101,8 @@
     block-size: 100%;
     display: flex;
     color: #1F363D;
+}
+
+.icon_arrow.ativado {
+    transform: rotate(180deg);
 }

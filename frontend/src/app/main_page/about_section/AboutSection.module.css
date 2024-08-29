@@ -1,0 +1,44 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100vh;
+    justify-content: center;
+}
+
+.image_cont {
+    display: flex;
+    flex-direction: column;
+    block-size: 30vh;
+    inline-size: 100%;
+    background: url('../../../images/bg_main_home.jpeg') #1f363d7c;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    align-items: start;
+    justify-content: end;
+    padding: 0.8rem;
+    margin: 1.8rem 0;
+}
+
+.image_cont a {
+    background-color: #4dd3cb;
+    padding: 0.2rem 0.8rem;
+    color: #fff;
+    border: 2px solid #4dd3cb;
+    border-radius: 0.4rem;
+    transition: 0.8s;
+}
+
+.image_cont a:hover{
+    background-color: #4dd3ca36;
+    color: #4dd3cb;
+} 
+
+.section h3 {
+    text-indent: 2.4rem;
+    color: #4dd3cb;
+}
+
+.section p {
+    padding: 0.4rem;
+}

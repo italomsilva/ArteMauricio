@@ -1,6 +1,6 @@
 import logo from "../../../images/logo.png";
 import styles from "./HomeSection.module.css";
-import { MdKeyboardDoubleArrowDown } from "react-icons/md";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 export default function homeSection() {
   return (
     <section id="home-section" className={styles.section_home}>
@@ -24,7 +24,7 @@ export default function homeSection() {
         </div>
       </div>
       <div className={styles.footer_home}>
-      <span><MdKeyboardDoubleArrowDown/></span>
+      <span><MdKeyboardDoubleArrowUp/></span>
       </div>
     </section>
   );

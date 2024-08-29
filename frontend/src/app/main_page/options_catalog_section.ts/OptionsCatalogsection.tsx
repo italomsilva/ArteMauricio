@@ -74,7 +74,7 @@ export default function OptionCatalogSection() {
                     <i>{card.icon}</i>
                     <a href={card.link}>{card.title}</a>
                   </div>
-                  <div className={styles.icon_arrow}>
+                  <div className={classNames(styles.icon_arrow, (ativado==true? styles.ativado: null))}>
                     <i onClick={(evt)=>{evt.preventDefault();handleArrowClick(index)}}>
                       <MdKeyboardArrowDown />
                     </i>
