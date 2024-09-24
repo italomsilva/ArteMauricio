@@ -20,7 +20,7 @@ export default function TitleSection({
         style:{
             fontSize: '1.8rem',
             textAlign: 'center',
-            color: textColor  
+            color: textColor,  
         }
     };    
     const regex = new RegExp(`\\b(${highLight})\\b`, 'gi');

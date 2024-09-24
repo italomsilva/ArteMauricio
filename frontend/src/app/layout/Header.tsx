@@ -4,6 +4,7 @@ import styles from "./header.module.css";
 import logo from "../../images/logo.png";
 import { useState } from "react";
 import classNames from "classnames";
+import {FaInstagram} from 'react-icons/fa'
 
 export default function Header() {
     const[active, setActive] = useState(false);
@@ -25,6 +26,9 @@ export default function Header() {
           </li>
           <li>
             <a href="#contato">Contato</a>
+          </li>
+          <li>
+            <a href=""><FaInstagram/></a>
           </li>
         </menu>
         <div onClick={()=>setActive(!active)} className={styles.menu_burguer} >
