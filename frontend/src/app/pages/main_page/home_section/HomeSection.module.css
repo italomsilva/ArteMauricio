@@ -1,6 +1,6 @@
 .section_home{
     background-color: #1F363D;
-    background: url('../../../images/bg_main_home.jpeg')  #1f363dd2;
+    background: url('../../../../images/bg_main_home.jpeg')  #1f363dd2;
     background-blend-mode: darken;
     background-size: cover;
     min-block-size: 101vh;
@@ -41,7 +41,7 @@
 }
 
 
-.btn_one{
+.btn_one a{
     background-color: #4DD3CB;
     padding: 0.2rem 1.8rem;
     border: 2px solid #4DD3CB;
@@ -49,11 +49,11 @@
     border-radius: 0.4rem;
     color: #1F363D;
 }
-.btn_one:hover{
-    background-color: transparent;
+.btn_one a:hover{
+    background-color: #4DD3CB36;
     color: #4DD3CB;
 }
-.btn_two{
+.btn_two a{ 
     color: #1F363D;
     background-color: #EDEBA0;
     padding: 0.2rem 1.8rem;
@@ -62,8 +62,8 @@
     transition: all 0.5s;
 }
 
-.btn_two:hover{
-    background-color: transparent;
+.btn_two a:hover{
+    background-color: #EDEBA036;
     color: #EDEBA0;
 }
 

@@ -1,6 +1,7 @@
-import logo from "../../../images/logo.png";
+import logo from "../../../../images/logo.png";
 import styles from "./HomeSection.module.css";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import MyButton from "@/app/components/MyButton";
 export default function homeSection() {
   return (
     <section id="home-section" className={styles.section_home}>
@@ -15,12 +16,8 @@ export default function homeSection() {
           </div>
         </div>
         <div className={styles.div_btns}>
-          <a className={styles.btn_one} href="#catalog-section">
-            Catalogo
-          </a>
-          <a className={styles.btn_two} href="#contato-section">
-            Contato
-          </a>
+        <MyButton classNm={styles.btn_one} text="Catálogo" link="#"></MyButton>
+        <MyButton classNm={styles.btn_two} text="Contato" link="#"></MyButton>
         </div>
       </div>
       <div className={styles.footer_home}>

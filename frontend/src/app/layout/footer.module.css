@@ -1,4 +1,5 @@
 .footer {
+    color: #4dd3cab4;
     background-color: var(--cor-dark);
     display: flex;
     flex-direction: column;

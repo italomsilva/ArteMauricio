@@ -17,7 +17,11 @@ export default function AboutSection() {
       <h3>Onde a Natureza Encontra a Criatividade</h3>
       <p>Explore nossa coleção de lembranças autênticas, feitas à mão com materiais naturais. Cada peça captura a essência tropical, perfeita para presentear ou guardar como uma recordação especial.</p>
       <div className={styles.btn}>
-        <a href=""></a>
+        <a href="">Acessar catálogo</a>
+      </div>
+      <h3>Algo mais?</h3>
+      <p>Para orçamentos, dúvidas, parcerias e etc. Entre em contato conosco através do nosso <a href="">Instagram</a> ou se preferir, acesse nossa <a href="">Página de Contato</a>.</p>
+      <div>
         <a href=""></a>
       </div>
     </section>

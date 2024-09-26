@@ -10,7 +10,7 @@
     flex-direction: column;
     block-size: 30vh;
     inline-size: 100%;
-    background: url('../../../images/bg_main_home.jpeg') #1f363d7c;
+    background: url('../../../../images/bg_main_home.jpeg') #1f363d7c;
     background-size: cover;
     background-position: center;
     background-blend-mode: darken;
@@ -41,4 +41,8 @@
 
 .section p {
     padding: 0.4rem;
+}
+
+.section p a {
+    color: #4dd3cb;
 }
