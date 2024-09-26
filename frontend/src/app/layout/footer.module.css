@@ -1,9 +1,21 @@
 .footer {
-    color: #4dd3cab4;
+    color: #4dd3ca6c;
     background-color: var(--cor-dark);
     display: flex;
     flex-direction: column;
+    min-block-size: 25vh;
     align-items: center;
-    justify-content: center;
-    padding: 4rem 0;
+    justify-content: space-between;
+    padding: 2rem 0 1rem 0;
+}
+
+.st{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.st i {
+    color: #4dd3cb;
+    font-size: 1.6rem;
 }
