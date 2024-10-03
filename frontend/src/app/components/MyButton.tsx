@@ -1,9 +1,8 @@
-
+import Link from 'next/link'
 export default function MyButton({ text, link, classNm }: Input) {
-
   return (
     <div className={classNm}>
-      <a href={link}>{text}</a>
+      <Link href={link}>{text}</Link>
     </div>
   );
 }
