@@ -9,7 +9,7 @@ export default function AboutSection() {
         highLight="ArteMauricio"
         highLightColor="#4dd3cb"
         textColor="#000000"
-       key={300}
+        uniqueKey={300}
       />
       <div className={styles.image_cont}>
         <MyButton classNm={null} link="#" text="Conheça nossa história"></MyButton>

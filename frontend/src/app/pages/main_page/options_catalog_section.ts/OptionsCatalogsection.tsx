@@ -62,7 +62,7 @@ export default function OptionCatalogSection() {
         highLight="ArteMauricio"
         highLightColor="#4dd3cb"
         textColor="#1F363D"
-        key={1}
+        uniqueKey={1}
       ></TitleSection>
       <nav>
         <ul>

@@ -6,13 +6,15 @@ export default function ContactPage() {
   const [assunto, setAssunto]: any = useState();
   const [mensagem, setMensagem]: any = useState();
   const [nome, setNome]: any = useState();
+
+  
   return (
     <section className={styles.main_section}>
       <div className={styles.div_text_one}>
         <h1>Gostou do nosso trabalho?</h1>
         <p>Entre em contato com a gente e vamos dar vida às suas idéias!</p>
       </div>
-      <form
+      <form className={styles.form_contact}
         onSubmit={(e) => {
           e.preventDefault();
           console.log();

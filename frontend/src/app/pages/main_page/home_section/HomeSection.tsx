@@ -1,4 +1,4 @@
-import logo from "../../../../images/logo.png";
+import logo from "../../../images/logo.png";
 import styles from "./HomeSection.module.css";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import MyButton from "@/app/components/MyButton";

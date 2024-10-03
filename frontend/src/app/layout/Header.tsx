@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "./header.module.css";
-import logo from "../../images/logo.png";
+import logo from "../images/logo.png";
 import { useState } from "react";
 import classNames from "classnames";
 import {FaInstagram} from 'react-icons/fa'

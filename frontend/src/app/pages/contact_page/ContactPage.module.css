@@ -1,0 +1,17 @@
+.main_section{
+    background-color: #142226;
+    block-size: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.div_text_one {
+    text-align: center;
+    color: #4dd3cb;
+}
+
+.form_contact{
+    background-color: #1F363D;
+}

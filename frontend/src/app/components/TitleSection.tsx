@@ -5,7 +5,7 @@ type Props = {
   highLight: string;
   highLightColor: string;
   textColor:string;
-  key:number;
+  uniqueKey:number;
 };
 
 
@@ -14,7 +14,7 @@ export default function TitleSection({
   highLight,
   highLightColor,
   textColor,
-  key
+  uniqueKey
 }: Props) {
     const styles:HTMLAttributes<HTMLHeadingElement> = {
         style:{
@@ -27,11 +27,11 @@ export default function TitleSection({
     const parts = text.split(regex);
     return (
     <div>
-      <h1 style={styles.style} key={key}>
+      <h1 style={styles.style} key={uniqueKey}>
         {parts.map((part) => {
           if (part.toLowerCase() == highLight.toLowerCase()) {
-            return <span key={key+1} style={{ color: highLightColor }}>{part}</span>;
-          } else return <span key={key=2}>{part}</span>;
+            return <span key={uniqueKey+1} style={{ color: highLightColor }}>{part}</span>;
+          } else return <span key={uniqueKey+2}>{part}</span>;
         })}
       </h1>
     </div>
