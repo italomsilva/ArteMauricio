@@ -4,13 +4,13 @@ import styles from "./header.module.css";
 import logo from "../images/logo.png";
 import { useState } from "react";
 import classNames from "classnames";
-import {FaInstagram} from 'react-icons/fa'
+import {FaInstagram, FaWhatsapp} from 'react-icons/fa'
 
 export default function Header() {
     const[active, setActive] = useState(false);
   return (
     <header className={styles.navbar}>
-      <a href="#home" className={styles.nav_logo}>
+      <a href="/" className={styles.nav_logo}>
         <img src={logo.src} alt="" />
       </a>
       <nav>
@@ -27,8 +27,9 @@ export default function Header() {
           <li>
             <a href="#contato">Contato</a>
           </li>
-          <li>
+          <li className={styles.social_icons}>
             <a href=""><FaInstagram/></a>
+            <a href=""><FaWhatsapp/></a>
           </li>
         </menu>
         <div onClick={()=>setActive(!active)} className={styles.menu_burguer} >

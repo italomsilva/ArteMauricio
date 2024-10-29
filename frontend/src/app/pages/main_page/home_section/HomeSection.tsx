@@ -17,16 +17,12 @@ export default function homeSection() {
           </div>
         </div>
         <div className={styles.div_btns}>
-            <MyButton
-              classNm={styles.btn_one}
-              text="Catálogo"
-              link="#"
-            ></MyButton>
-            <MyButton
-              classNm={styles.btn_two}
-              text="Contato"
-              link="/contact"
-            ></MyButton>
+          <MyButton classNm={styles.btn_one} link="#">
+            Catálogo
+          </MyButton>
+          <MyButton classNm={styles.btn_two} link="/contact">
+            Contato
+          </MyButton>
         </div>
       </div>
       <div className={styles.footer_home}>

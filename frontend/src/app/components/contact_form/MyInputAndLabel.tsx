@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function MyInputAndLabel(input: Input) {
   return (
-    <div>
+    <div className={input.classNm}>
       <label htmlFor={`i${input.id}`}>{input.labelText}</label>
       <input
         type={input.type}
@@ -23,4 +23,5 @@ type Input = {
   type: string;
   text?:string;
   handleValue?:(event: React.ChangeEvent<HTMLInputElement>) => void;
+  classNm?:any;
 };

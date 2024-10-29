@@ -32,6 +32,7 @@ export default function ContactPage() {
           type="text"
           text={nome}
           handleValue={(e)=>setNome(e.target.value)}
+          classNm={styles.my_input}
         />
         <MyInputAndLabel
           id="assunto"
@@ -40,6 +41,7 @@ export default function ContactPage() {
           type="text"
           text={assunto}
           handleValue={(e)=>setAssunto(e.target.value)}
+          classNm={styles.my_input}
         />
         <MyInputAndLabel
           id="msg"
@@ -48,8 +50,9 @@ export default function ContactPage() {
           type="message"
           text={mensagem}
           handleValue={(e)=>setMensagem(e.target.value)}
+          classNm={styles.my_input}
         />
-        <input type="submit" value="Pegue" />
+        <input className={styles.btn_form} type="submit" value="Enviar" />
       </form>
     </section>
   );

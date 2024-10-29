@@ -82,3 +82,9 @@
 .navbar .menuactive{
     inset-inline-end: 0;
 }
+
+.social_icons{
+    display: flex;
+    inline-size: 50%;
+    justify-content: space-evenly;
+}

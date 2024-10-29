@@ -46,3 +46,20 @@
 .section p a {
     color: #4dd3cb;
 }
+.mybtn {
+    margin: 0rem 0 1.4rem 1rem;
+}
+.mybtn a{
+    font-size: 0.8rem;
+    background-color: #4dd3cb;
+    padding: 0.2rem 1.3rem ;
+    color: #ffffff;
+    border-radius: 0.4rem;
+    transition: all 0.5s;
+    border: 2px solid #4dd3cb;
+}
+
+.mybtn a:hover{
+    background-color: #4dd3ca50;
+    color: #4dd3cb;
+}

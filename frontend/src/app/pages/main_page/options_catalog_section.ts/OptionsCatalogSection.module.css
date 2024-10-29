@@ -77,7 +77,8 @@
     color: #fff;
     font-size: 1.8rem;
 }
-.icon_and_text a {
+.icon_and_text h2 {
+    font-size: 1.2rem;
     color: #fff;
 }
 .icon_arrow{
@@ -86,23 +87,4 @@
    position: relative;
    transform: rotate(0deg);
    transition: 0.5s;
-}
-
-.li_cont_two {
-    block-size: 0;
-    overflow-y: hidden;
-    transition: all 0.5s;
-}
-
-.li_cont_two.ativado{
-    letter-spacing: 2px;
-    line-height: 1.4rem;
-    padding: 0.4rem;
-    block-size: 100%;
-    display: flex;
-    color: #1F363D;
-}
-
-.icon_arrow.ativado {
-    transform: rotate(180deg);
 }

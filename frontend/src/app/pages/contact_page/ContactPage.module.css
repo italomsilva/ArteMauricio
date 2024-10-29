@@ -14,4 +14,48 @@
 
 .form_contact{
     background-color: #1F363D;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    inline-size: 80vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.8rem;
+}
+
+.my_input{
+    display: flex;
+    flex-direction: column;
+}
+
+.my_input label {
+   color: #4dd3cb; 
+}
+
+.my_input input {
+    background-color: #142226;
+    outline: none;
+    border: 2px solid #4dd3cb36;
+    block-size: 2.4rem;
+    border-radius: 0.4rem;
+    padding: 0.8rem;
+    color: white;
+}
+
+.btn_form{
+    background-color: #4dd3cb;
+    inline-size: 100%;
+    border: 2px solid #4dd3cb;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    color: #142226;
+    letter-spacing: 2px;
+    transition: all 0.5s;
+}
+
+.btn_form:hover{
+    background-color: #4dd3cb36;
+    color: #4dd3cb;
+    letter-spacing: 4px;
 }
