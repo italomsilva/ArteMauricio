@@ -16,16 +16,16 @@ export default function Header() {
       <nav>
         <menu className={classNames(active? styles.menuactive : null)}>
           <li>
-            <a href="#home">Home</a>
+            <a href="/#home">Home</a>
           </li>
           <li>
-            <a href="#catalogo">Catalogo</a>
+            <a href="/catalog">Catalogo</a>
           </li>
           <li>
-            <a href="#sobre">Sobre</a>
+            <a href="/sobre">Sobre</a>
           </li>
           <li>
-            <a href="#contato">Contato</a>
+            <a href="/contact">Contato</a>
           </li>
           <li className={styles.social_icons}>
             <a href=""><FaInstagram/></a>
