@@ -7,11 +7,11 @@ export default function MyCardProduct(input: Input) {
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   return (
-    <div className={styles.card} key={input.product.id}>
+    <a href={`product/${input.product.id}`} className={styles.card} key={input.product.id}>
       <div className={styles.div_img}>
         {isImageLoading && (
             <div className={styles.div_loading}>
-              <MyLoading size="60px"></MyLoading>
+              <MyLoading color="#1f363d" size="60px"></MyLoading>
             </div>
         )}
         <img
@@ -25,7 +25,7 @@ export default function MyCardProduct(input: Input) {
         <h3>{input.product.title}</h3>
         <p>R$ {input.product.price.toFixed(2)}</p>
       </div>
-    </div>
+    </a>
   );
 }
 

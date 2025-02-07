@@ -46,8 +46,10 @@
 .section p a {
     color: #4dd3cb;
 }
-.mybtn {
-    margin: 0rem 0 1.4rem 1rem;
+.btn {
+    display: flex;
+    margin-bottom: 1.4rem;
+    align-self: center;
 }
 .mybtn a{
     font-size: 0.8rem;

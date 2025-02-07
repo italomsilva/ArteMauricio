@@ -17,7 +17,7 @@ export async function getAllProducts():Promise<Product[]> {
 
         const data = await response.json();
         const results:Product[] = data.result;
-        return results; // Retorna os dados da API (exemplo: token de autenticação)
+        return results; 
     } catch (error) {
         console.error("Erro na requisição:", error);
         return []

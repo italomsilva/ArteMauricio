@@ -28,7 +28,7 @@ export default function ContactPage() {
         <MyInputAndLabel
           id="nome"
           labelText="Nome: "
-          placeHoldertext="Ex: Italo"
+          placeHoldertext="Seu nome"
           type="text"
           text={nome}
           handleValue={(e)=>setNome(e.target.value)}
@@ -46,7 +46,7 @@ export default function ContactPage() {
         <MyInputAndLabel
           id="msg"
           labelText="Mensagem: "
-          placeHoldertext="Ex: Gostaria do Orçamento de um Quadro"
+          placeHoldertext="Ex: Gostaria de um Apoiador personalizado..."
           type="message"
           text={mensagem}
           handleValue={(e)=>setMensagem(e.target.value)}

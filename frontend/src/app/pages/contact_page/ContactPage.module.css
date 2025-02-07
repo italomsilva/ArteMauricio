@@ -1,5 +1,6 @@
 .main_section{
-    background-color: #142226;
+    /* background-color: #142226; */
+    background-color: #4dd3ca13;
     block-size: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,17 +10,19 @@
 
 .div_text_one {
     text-align: center;
-    color: #4dd3cb;
+    color: #1f363d;
+    margin-bottom: 2rem;
 }
 
 .form_contact{
-    background-color: #1F363D;
+    background-color: #4dd3ca10;
     padding: 1rem;
     border-radius: 0.8rem;
     inline-size: 80vw;
     display: flex;
     flex-direction: column;
     row-gap: 0.8rem;
+    border: 3px solid #4dd3cb;
 }
 
 .my_input{
@@ -28,17 +31,18 @@
 }
 
 .my_input label {
-   color: #4dd3cb; 
+   color: #1f363d; 
 }
 
 .my_input input {
-    background-color: #142226;
+    background-color:transparent;
     outline: none;
-    border: 2px solid #4dd3cb36;
-    block-size: 2.4rem;
+    border: 2px solid #4dd3cb;
+    block-size: 2.9rem;
     border-radius: 0.4rem;
     padding: 0.8rem;
-    color: white;
+    color: #1f363d;
+    font-weight: bold;
 }
 
 .btn_form{
@@ -49,13 +53,13 @@
     cursor: pointer;
     border-radius: 0.4rem;
     font-weight: 600;
-    color: #142226;
+    color: #fff;
     letter-spacing: 2px;
     transition: all 0.5s;
 }
 
 .btn_form:hover{
-    background-color: #4dd3cb36;
-    color: #4dd3cb;
+    background-color: #4dd3caa8;
+    color: #1f363d;
     letter-spacing: 4px;
 }

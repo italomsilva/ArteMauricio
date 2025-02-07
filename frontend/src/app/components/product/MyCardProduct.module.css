@@ -5,10 +5,11 @@
     height: 50vw;
     padding: 1rem;
     border: 0.2rem solid #4DD3CB;
-    background-color: #b7e4f052;
+    background-color: #b7e4f041;
     border-radius: 0.8rem;
     justify-content: space-between;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 .card:hover{
