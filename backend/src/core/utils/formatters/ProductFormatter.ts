@@ -22,6 +22,7 @@ export function productFormatter(input: {
     }[];
   
 } {
+  const sortedImages = [...input.images].sort((a, b) => a.order - b.order);
   return {
     id: input.product.id,
     title: input.product.title,
@@ -33,8 +34,6 @@ export function productFormatter(input: {
     categories: input.categories.map((c) => {
       return c.categoryName;
     }),
-    images: input.images.map((i) => {
-      return i;
-    }),
+    images: sortedImages
   };
 }
