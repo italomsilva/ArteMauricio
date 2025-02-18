@@ -1,26 +1,43 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Product } from "@/app/entities/Product";
-import { getProductById } from "@/app/controller/products/getProductById";
-import MyLoading from "@/app/components/loading/MyLoading";
+import {
+  getProductById,
+  GetProductByIdOutput,
+} from "@/app/controller/products/getProductById";
 import styles from "./ProductPage.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaShareNodes } from "react-icons/fa6";
+import Link from "next/link";
+import ProductNotFoundErrorPage from "../errors/ProductNotFoundErrorPage";
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { register } from "swiper/element";
+import MyLoading from "@/app/components/loading/MyLoading";
 
-async function loadProduct(id: string): Promise<Product | null> {
+register();
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+
+
+
+
+async function loadProduct(id: string): Promise<GetProductByIdOutput | null> {
   const result = await getProductById(id);
   return result;
 }
 
 export default function ProductPage(props: { id: string }) {
-  const [product, setProduct] = useState<Product | null>();
+  const [product, setProduct] = useState<GetProductByIdOutput | null>();
   const [loading, setLoading] = useState(true);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       const loadedProduct = await loadProduct(props.id);
-      setProduct(loadedProduct ?? null);
+      setProduct(loadedProduct);
       setLoading(false);
     };
     fetchProducts();
@@ -30,18 +47,62 @@ export default function ProductPage(props: { id: string }) {
     <div className={styles.main_div}>
       {loading ? (
         <div className={styles.div_loading}>
-          <MyLoading color="#1f363d" size="40vw"></MyLoading>
+          <MyLoading color="#4dd3cb" size="30vw"></MyLoading>
         </div>
-      ) : (
+      ) : product ? (
         <section className={styles.main_section}>
-          <p>
-            <FaArrowLeft /> <FaShareNodes /> id do produto: {product?.id}
-          </p>
-          <img src={product?.mainPhoto} alt="" />
-            <p>{product?.price}</p>
-            <h1>{product?.title}</h1>
-            <p>{product?.description}</p>
-          </section>
+          <div className={styles.div_header}>
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.back();
+              }}
+              className={styles.btn_back}
+            >
+              <FaArrowLeft />
+            </Link>
+            <span>
+              <p>id: {product?.id}</p>
+              <i>
+                <FaShareNodes />
+              </i>
+            </span>
+          </div>
+          <picture className={styles.picture}>
+            {isImageLoading && (
+              <div className={styles.div_loading_img}>
+                <MyLoading color="#1f363d" size="8rem"></MyLoading>
+              </div>
+            )}
+
+            <Swiper slidesPerView={1}>
+              {product.images.map((item) => {
+                return (
+                  <SwiperSlide>
+                    <img
+                      src={item.url}
+                      key={item.order}
+                      onLoad={() => setIsImageLoading(false)}
+                      style={
+                        isImageLoading
+                          ? { display: "none" }
+                          : { display: "flex" }
+                      }
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </picture>
+          <div className={styles.div_text}>
+            <p className={styles.p_price}>R$ {product.price}</p>
+            <h2 className={styles.p_title}>{product.title}</h2>
+            <p className={styles.p_descr}>{product.description}</p>
+          </div>
+        </section>
+      ) : (
+        <ProductNotFoundErrorPage />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import { Product } from "@/app/entities/Product";
 
-export async function getProductById(id: string): Promise<Product | null> {
+export async function getProductById(id: string): Promise<GetProductByIdOutput | null> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/products/${id}`;
   console.log(url)
   try {
@@ -23,3 +23,18 @@ export async function getProductById(id: string): Promise<Product | null> {
     return null;
   }
 }
+
+export type GetProductByIdOutput = {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+  mainPhoto: string;
+  categories: string[];
+  images: {
+    url: string;
+    order: number;
+  }[];
+};
