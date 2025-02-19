@@ -8,8 +8,8 @@ export default function AboutSection() {
       <TitleSection
         text="Quem somos? Saiba um pouco mais sobre a ArteMauricio"
         highLight="ArteMauricio"
-        highLightColor="#4dd3cb"
-        textColor="#000000"
+        highLightColor="var(--st-color)"
+        textColor="var(--nd-color)"
         uniqueKey={300}
       />
       <div className={styles.image_cont}>

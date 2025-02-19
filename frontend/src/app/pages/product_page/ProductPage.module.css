@@ -13,7 +13,7 @@
 }
 
 .div_loading_img{
-    background-color: #4dd3ca3b;
+    background-color: var(--st-color-36);
     height: 100vw;
     display: flex;
     align-items: center;
@@ -36,7 +36,7 @@
 
 .btn_back {
     font-size: 1.5rem;
-    color: #4dd3cb;
+    color: var(--st-color);
 }
 
 .div_header span{
@@ -48,7 +48,7 @@
 
 .div_header span i {
     font-size: 1.5rem;
-    color: #4dd3cb;
+    color: var(--st-color);
 }
 
 .picture img{
@@ -62,13 +62,13 @@
 }
 
 .p_price{
-    color: #4dd3cb;
+    color: var(--st-color);
     font-weight: bolder;
     font-size: 1.5rem;
 }
 
 .p_title{
-    color: #1f363d;
+    color: var(--nd-color);
 }
 
 .p_descr{

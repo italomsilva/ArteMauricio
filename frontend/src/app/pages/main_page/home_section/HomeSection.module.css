@@ -1,5 +1,5 @@
 .section_home{
-    background-color: #1F363D;
+    background-color: var(--nd-color);
     background: url('../../../images/bg_main_home.jpeg')  #1f363dd2;
     background-blend-mode: darken;
     background-size: cover;
@@ -22,12 +22,12 @@
     inline-size: 60%;
 }
 .section_home h1 {
-    color: #EDEBA0;
+    color: var(--contrast-color);
     font-size: 3.2rem;
 }
 
 .section_home p {
-    color: #4DD3CB;
+    color: var(--st-color);
     font-size: 1.2rem;
 }
 
@@ -42,34 +42,34 @@
 
 
 .btn_one a{
-    background-color: #4DD3CB;
+    background-color: var(--st-color);
     padding: 0.2rem 1.8rem;
-    border: 2px solid #4DD3CB;
+    border: 2px solid var(--st-color);
     transition: all 0.5s;
     border-radius: 0.4rem;
-    color: #1F363D;
+    color: var(--nd-color);
 }
 .btn_one a:hover{
-    background-color: #4DD3CB36;
-    color: #4DD3CB;
+    background-color: var(--st-color-36);
+    color: var(--st-color);
 }
 .btn_two a{ 
-    color: #1F363D;
-    background-color: #EDEBA0;
+    color: var(--nd-color);
+    background-color: var(--contrast-color);
     padding: 0.2rem 1.8rem;
-    border: 2px solid #EDEBA0;
+    border: 2px solid var(--contrast-color);
     border-radius: 0.4rem;
     transition: all 0.5s;
 }
 
 .btn_two a:hover{
     background-color: #EDEBA036;
-    color: #EDEBA0;
+    color: var(--contrast-color);
 }
 
 .footer_home span{
     font-size: 3.2rem;
-    color: #4dd3ca98;
+    color: var(--st-color-89);
     position: relative;
     animation: moveUpDown 0.8s infinite alternate;
     z-index: 0;

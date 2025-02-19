@@ -15,11 +15,11 @@ export default function LoginPage() {
         placeHoldertext=""
       ></MyInputAndLabel>
             <MyInputAndLabel
-        id="ilogin"
+        id="ipassword"
         type="password"
         classNm={styles.textinput}
         handleValue={undefined}
-        key={1}
+        key={2}
         labelText="Senha: "
         placeHoldertext=""
       ></MyInputAndLabel>

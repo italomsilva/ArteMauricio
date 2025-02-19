@@ -20,10 +20,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-
-
-
-
 async function loadProduct(id: string): Promise<GetProductByIdOutput | null> {
   const result = await getProductById(id);
   return result;
@@ -47,7 +43,7 @@ export default function ProductPage(props: { id: string }) {
     <div className={styles.main_div}>
       {loading ? (
         <div className={styles.div_loading}>
-          <MyLoading color="#4dd3cb" size="30vw"></MyLoading>
+          <MyLoading color="var(--st-color)" size="30vw"></MyLoading>
         </div>
       ) : product ? (
         <section className={styles.main_section}>
@@ -72,11 +68,22 @@ export default function ProductPage(props: { id: string }) {
           <picture className={styles.picture}>
             {isImageLoading && (
               <div className={styles.div_loading_img}>
-                <MyLoading color="#1f363d" size="8rem"></MyLoading>
+                <MyLoading color="var(--nd-color)" size="8rem"></MyLoading>
               </div>
             )}
 
             <Swiper slidesPerView={1}>
+              <SwiperSlide>
+                <img
+                  src={product.mainPhoto}
+                  key={product.id}
+                  onLoad={() => setIsImageLoading(false)}
+                  style={
+                    isImageLoading ? { display: "none" } : { display: "flex" }
+                  }
+                />
+              </SwiperSlide>
+
               {product.images.map((item) => {
                 return (
                   <SwiperSlide>

@@ -1,5 +1,5 @@
 .navbar{
-    background-color: var(--cor-dark);
+    background-color: var(--nd-color);
     position: fixed;
     inline-size: 100%;
     display: flex;
@@ -30,7 +30,7 @@
 }
 
 .menu_burguer span{
-    background-color: #4dd3cb;
+    background-color: var(--st-color);
     content: "";
     display: block;
     inline-size: 100%;
@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: center;
     list-style: none;
-    background-color: var(--cor-dark);
+    background-color: var(--nd-color);
     inline-size: 50vw;
     block-size: 100vh;
     inset-block-start: 0;
@@ -55,11 +55,11 @@
 }
 
 .navbar menu li a{
-    color: #4dd3cb;
+    color: var(--st-color);
     font-size: 1.2rem;
 }
 .navbar menu li a:hover{
-    color: #4dd3cb89;
+    color: var(--st-color-89);
 }
 
 .nav_logo img {

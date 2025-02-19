@@ -21,22 +21,22 @@
 }
 
 .image_cont a {
-    background-color: #4dd3cb;
+    background-color: var(--st-color);
     padding: 0.2rem 0.8rem;
     color: #fff;
-    border: 2px solid #4dd3cb;
+    border: 2px solid var(--st-color);
     border-radius: 0.4rem;
     transition: 0.8s;
 }
 
 .image_cont a:hover{
     background-color: #4dd3ca36;
-    color: #4dd3cb;
+    color: var(--st-color);
 } 
 
 .section h3 {
     text-indent: 2.4rem;
-    color: #4dd3cb;
+    color: var(--st-color);
 }
 
 .section p {
@@ -44,7 +44,7 @@
 }
 
 .section p a {
-    color: #4dd3cb;
+    color: var(--st-color);
 }
 .btn {
     display: flex;
@@ -53,15 +53,15 @@
 }
 .mybtn a{
     font-size: 0.8rem;
-    background-color: #4dd3cb;
+    background-color: var(--st-color);
     padding: 0.2rem 1.3rem ;
     color: #ffffff;
     border-radius: 0.4rem;
     transition: all 0.5s;
-    border: 2px solid #4dd3cb;
+    border: 2px solid var(--st-color);
 }
 
 .mybtn a:hover{
     background-color: #4dd3ca50;
-    color: #4dd3cb;
+    color: var(--st-color);
 }

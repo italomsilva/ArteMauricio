@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import TitleSection from "@/app/components/TitleSection";
 import styles from "./CatalogPage.module.css";
 import { Product } from "@/app/entities/Product";
 import MyCardProduct from "@/app/components/product/MyCardProduct";

@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1F363D;
-    background-color: #dbeef3;
+    background-color: var(--nd-color);
+    background-color: var(--light-bg-color);
     position: relative;
     padding-block-end: 4vh;
 }
@@ -25,10 +25,10 @@
 }
 
 .section ul li {
-    background-color: #4dd3cb;
+    background-color: var(--st-color);
     display: flex;
     flex-direction: column;
-    border: 2px solid #4dd3cb;
+    border: 2px solid var(--st-color);
     transition: all 0.5s;
     border-radius: 0.4rem;
 }

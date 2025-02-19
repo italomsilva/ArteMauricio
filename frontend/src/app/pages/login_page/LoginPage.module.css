@@ -4,5 +4,15 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #dbeef3;
+    background-color: var(--light-bg-color);
+}
+
+.textinput label{
+    font-weight: bold;
+    color: var(--nd-color)
+}
+
+.textinput input{
+    border: 2px solid var(--nd-color);
+    background-color: #b7e9f5;
 }

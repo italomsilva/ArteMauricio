@@ -39,14 +39,14 @@ export default function OptionCatalogSection() {
   return (
     <section className={styles.section} id="catalog-section">
       {isLoading ? (
-        <MyLoading></MyLoading>
+        <MyLoading center={true} color="var(--nd-color)" key={1} size="20vw"></MyLoading>
       ) : (
         <>
           <TitleSection
             text="Lembranças, Decorações, Personalizados e muito mais na ArteMauricio"
             highLight="ArteMauricio"
-            highLightColor="#4dd3cb"
-            textColor="#1F363D"
+            highLightColor="var(--st-color)"
+            textColor="var(--nd-color)"
             uniqueKey={1}
           ></TitleSection>
           <nav>

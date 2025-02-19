@@ -11,7 +11,7 @@ export default function MyCardProduct(input: Input) {
       <div className={styles.div_img}>
         {isImageLoading && (
             <div className={styles.div_loading}>
-              <MyLoading color="#1f363d" size="60px"></MyLoading>
+              <MyLoading color="var(--nd-color)" size="60px"></MyLoading>
             </div>
         )}
         <img
