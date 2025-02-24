@@ -10,7 +10,7 @@ export default function MyInputAndLabel(input: Input) {
         name={input.id}
         placeholder={input.placeHoldertext}
         value={input.text}
-        onChange={input.handleValue}
+        onChange={(event) => input.handleValue && input.handleValue(event.target.value)}
       />
     </div>
   );
@@ -21,7 +21,7 @@ type Input = {
   labelText?: string;
   placeHoldertext?: string;
   type: string;
-  text?:string;
-  handleValue?:(event: React.ChangeEvent<HTMLInputElement>) => void;
-  classNm?:any;
+  text?: string;
+  handleValue?: (value: string) => void; 
+  classNm?: any;
 };

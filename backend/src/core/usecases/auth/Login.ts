@@ -12,10 +12,8 @@ export class LoginUseCase{
             throw new UnauthorizedException('INVALID LOGIN OR PASSWORD');
         }
         const result = await this.authTokenGateway.signIn(input);
-        return { result };
+        return result ;
     }
 }
 
-type Output = {
-    result: string;
-}
+type Output = string

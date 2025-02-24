@@ -32,7 +32,7 @@ export default function ContactPage() {
           placeHoldertext="Seu nome"
           type="text"
           text={nome}
-          handleValue={(e)=>setNome(e.target.value)}
+          handleValue={setNome}
           classNm={styles.my_input}
         />
         <MyInputAndLabel
@@ -41,7 +41,7 @@ export default function ContactPage() {
           placeHoldertext="Ex: Apoiador de celular"
           type="text"
           text={assunto}
-          handleValue={(e)=>setAssunto(e.target.value)}
+          handleValue={setAssunto}
           classNm={styles.my_input}
         />
         <MyInputAndLabel
@@ -50,7 +50,7 @@ export default function ContactPage() {
           placeHoldertext="Ex: Gostaria de um Apoiador personalizado..."
           type="message"
           text={mensagem}
-          handleValue={(e)=>setMensagem(e.target.value)}
+          handleValue={setMensagem}
           classNm={styles.my_input}
         />
         <MyButtonInput classNm={styles.btn_form} value="submit" id="1" />

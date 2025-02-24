@@ -1,5 +1,3 @@
-import { Product } from "@/app/entities/Product";
-
 export async function getProductById(id: string): Promise<GetProductByIdOutput | null> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/products/${id}`;
   console.log(url)
