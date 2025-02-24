@@ -4,7 +4,7 @@ import MyButtonInput from "@/app/components/contact_form/MyButtonInput";
 export default function LoginPage() {
   return (
     <section className={styles.main_section}>
-      <form action="https://dontpad.com/aloitzin" method="GET" onSubmit={undefined}>
+      <form action="https://dontpad.com/aloitzin" method="GET" onSubmit={undefined} className={styles.form}>
       <MyInputAndLabel
         id="ilogin"
         type="text"
@@ -23,7 +23,7 @@ export default function LoginPage() {
         labelText="Senha: "
         placeHoldertext=""
       ></MyInputAndLabel>
-      <MyButtonInput id="1"></MyButtonInput>
+      <MyButtonInput id="1" classNm={styles.btn_submit} value="Entrar"></MyButtonInput>
 
       </form>
     </section>

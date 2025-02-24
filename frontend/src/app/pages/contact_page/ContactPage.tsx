@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./ContactPage.module.css";
 import MyInputAndLabel from "@/app/components/contact_form/MyInputAndLabel";
+import MyButtonInput from "@/app/components/contact_form/MyButtonInput";
 
 export default function ContactPage() {
   const [assunto, setAssunto]: any = useState();
@@ -52,7 +53,7 @@ export default function ContactPage() {
           handleValue={(e)=>setMensagem(e.target.value)}
           classNm={styles.my_input}
         />
-        <input className={styles.btn_form} type="submit" value="Enviar" />
+        <MyButtonInput classNm={styles.btn_form} value="submit" id="1" />
       </form>
     </section>
   );

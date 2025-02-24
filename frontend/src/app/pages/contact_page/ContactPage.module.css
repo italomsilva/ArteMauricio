@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-.btn_form{
+.btn_form input{
     background-color: var(--st-color);
     inline-size: 100%;
     border: 2px solid var(--st-color);

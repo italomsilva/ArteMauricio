@@ -11,9 +11,9 @@ import Link from "next/link";
 import ProductNotFoundErrorPage from "../errors/ProductNotFoundErrorPage";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { register } from "swiper/element";
 import MyLoading from "@/app/components/loading/MyLoading";
 
+import { register } from "swiper/element";
 register();
 import "swiper/css";
 import "swiper/css/navigation";
@@ -105,6 +105,7 @@ export default function ProductPage(props: { id: string }) {
           <div className={styles.div_text}>
             <p className={styles.p_price}>R$ {product.price}</p>
             <h2 className={styles.p_title}>{product.title}</h2>
+            <a href="#" className={styles.btn_comp}>Comprar</a>
             <p className={styles.p_descr}>{product.description}</p>
           </div>
         </section>

@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Product } from "@/app/entities/Product";
 import MyLoading from "../loading/MyLoading";
 import styles from './MyCardProduct.module.css'
+import { randomInt } from "crypto";
+import { FaRandom } from "react-icons/fa";
 
 export default function MyCardProduct(input: Input) {
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   return (
-    <a href={`product/${input.product.id}`} className={styles.card} key={input.product.id}>
+    <a href={`product/${input.product.id}`} className={styles.card} >
       <div className={styles.div_img}>
         {isImageLoading && (
             <div className={styles.div_loading}>

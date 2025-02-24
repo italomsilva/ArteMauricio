@@ -1,7 +1,7 @@
 import { Product } from "@/app/entities/Product";
 
-export async function getAllProducts():Promise<Product[]> {
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/products`;
+export async function getProducts(page:number):Promise<Product[]> {
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/products?page=${page}?limit=15`;
     try {
         const response = await fetch(url, {
             method: "GET",

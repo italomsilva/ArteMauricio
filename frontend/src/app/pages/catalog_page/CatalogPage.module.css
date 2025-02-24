@@ -4,6 +4,8 @@
     min-height: 100vh;
     padding-top: 80px;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .main_section h2{
@@ -18,4 +20,26 @@
     column-gap: 2vw;
     padding: 2vw 0 2vw 1.5vw;
     row-gap: 2vw;
+}
+
+.seemore_btn{
+    display: flex;
+    width: max-content;
+    padding: 0.1rem 3rem;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: baseline;
+    column-gap: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+    background-color: var(--st-color);
+    border-radius: 0.5rem;
+    border: 2px solid var(--st-color);
+    text-align: center;
+}
+
+.seemore_btn:disabled{
+    background-color: var(--st-color-36);
+    color: var(--st-color-89);
+    border: none;
 }

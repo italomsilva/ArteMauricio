@@ -71,6 +71,23 @@
     color: var(--nd-color);
 }
 
+.btn_comp{
+    background-color: var(--st-color);
+    display: flex;
+    color: white;
+    padding: 0rem 2rem;
+    max-width: max-content;
+    border-radius: 0.5rem;
+    border: 2px solid var(--st-color);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.btn_comp:hover{
+    background-color: var(--st-color-89);
+    color: var(--st-color);
+}
+
 .p_descr{
     color: #646464;
 }
