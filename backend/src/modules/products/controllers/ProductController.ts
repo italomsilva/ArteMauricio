@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CreateProductUseCase } from 'src/core/usecases/product/CreateProduct';
 import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
@@ -21,32 +22,35 @@ export class ProductController {
     private readonly getProductUseCase: GetProductUseCase,
     private readonly getAllProductsUseCase: GetAllProductsUsecase,
     private readonly productCategoryFilterUseCase: ProductCategoryFilterUseCase,
-    private readonly createProductUseCase:CreateProductUseCase,
-    private readonly editProductUseCase:EditProductUseCase,
-    private readonly deleteProductUseCase:DeleteProductUseCase,
+    private readonly createProductUseCase: CreateProductUseCase,
+    private readonly editProductUseCase: EditProductUseCase,
+    private readonly deleteProductUseCase: DeleteProductUseCase,
   ) {}
   @Get(':id')
   async getProduct(@Param() params): Promise<any> {
     return await this.getProductUseCase.execute(params.id);
   }
   @Get('')
-  async getAllProducts(): Promise<any> {
-    return await this.getAllProductsUseCase.execute();
+  async getAllProducts(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+  ): Promise<any> {
+    return await this.getAllProductsUseCase.execute({ page, limit });
   }
   @Post('create')
-  async createProduct(@Body() body):Promise<any>{
+  async createProduct(@Body() body): Promise<any> {
     return await this.createProductUseCase.execute(body);
   }
   @Put('edit')
-  async editProduct(@Body() body):Promise<any>{
+  async editProduct(@Body() body): Promise<any> {
     return await this.editProductUseCase.execute(body);
   }
   @Delete('delete')
-  async deleteProduct(@Body() body):Promise<any>{
-    return await this.deleteProductUseCase.execute(body)
+  async deleteProduct(@Body() body): Promise<any> {
+    return await this.deleteProductUseCase.execute(body);
   }
   @Post('filter/categories')
-  async filterByCategories(@Body() body):Promise<any>{
-    return await this.productCategoryFilterUseCase.execute(body)
+  async filterByCategories(@Body() body): Promise<any> {
+    return await this.productCategoryFilterUseCase.execute(body);
   }
 }

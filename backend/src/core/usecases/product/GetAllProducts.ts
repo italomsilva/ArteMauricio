@@ -9,14 +9,21 @@ export class GetAllProductsUsecase {
     private readonly productRepository: ProductRepository,
   ) {}
 
-  async execute(): Promise<Output> {
-    const result = await this.productRepository.findAll();
+  async execute(input: Input): Promise<Output> {
+    const page = input.page? parseInt(input.page, 10): 1;
+    const limit = input.limit? parseInt(input.limit, 10): 15;
+    const result = await this.productRepository.findAll(page, limit);
     return {
       result: result,
       totalResults: result.length,
     };
   }
 }
+
+type Input = {
+  page: string;
+  limit: string;
+};
 
 type Output = {
   result: Product[];
