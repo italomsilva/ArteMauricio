@@ -26,25 +26,37 @@ import { EditProductUseCase } from 'src/core/usecases/product/EditProduct';
 import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
 import { AddProductCategoryUseCase } from 'src/core/usecases/product/categories/AddProductCategory';
 import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categories/DeleteProductCategory';
+import { CloudinaryGateway } from 'src/infra/gateway/CloudinaryGateway';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductSchema,CategorySchema, ProductImageSchema, ProductCategorySchema])],
+  imports: [
+    TypeOrmModule.forFeature([
+      ProductSchema,
+      CategorySchema,
+      ProductImageSchema,
+      ProductCategorySchema,
+    ]),
+  ],
   providers: [
     {
-      provide:'productRepository',
-      useClass: MySqlProductRepository
+      provide: 'imageCloudGateway',
+      useClass: CloudinaryGateway,
     },
     {
-      provide:'categoryRepository',
-      useClass: MySqlCategoryRepository
+      provide: 'productRepository',
+      useClass: MySqlProductRepository,
     },
     {
-      provide:'productImageRepository',
-      useClass: MySqlProductImagesRepository
+      provide: 'categoryRepository',
+      useClass: MySqlCategoryRepository,
     },
     {
-      provide:'productCategoryRepository',
-      useClass: MySqlProductCategoryRepository
+      provide: 'productImageRepository',
+      useClass: MySqlProductImagesRepository,
+    },
+    {
+      provide: 'productCategoryRepository',
+      useClass: MySqlProductCategoryRepository,
     },
     GetProductUseCase,
     GetAllProductsUsecase,
@@ -60,7 +72,7 @@ import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categori
     DeleteProductCategoryUsecase,
     AddImageUseCase,
     ChangeImageOrderUseCase,
-    DeleteImageUseCase
+    DeleteImageUseCase,
   ],
   controllers: [ProductController, CategoryController, ImageController],
 })
