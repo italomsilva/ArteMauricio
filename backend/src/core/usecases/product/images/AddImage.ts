@@ -1,21 +1,16 @@
 import {
-  ConflictException,
   Inject,
   Injectable,
   InternalServerErrorException,
-  NotFoundException,
 } from '@nestjs/common';
 import { ProductImage } from 'src/core/domain/entities/ProductImage';
 import { ImageCloudGateway } from 'src/core/domain/gateways/ImageCloudGateway';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
-import { ProductRepository } from 'src/core/domain/repositories/ProductRepository';
 import { Validator } from 'src/core/utils/validators/Validator';
 
 @Injectable()
 export class AddImageUseCase {
   constructor(
-    @Inject('productRepository')
-    private readonly productRepository: ProductRepository,
     @Inject('productImageRepository')
     private readonly productImageRepository: ProductImageRepository,
     @Inject('imageCloudGateway')
@@ -23,44 +18,65 @@ export class AddImageUseCase {
   ) {}
 
   async execute(input: Input): Promise<Output> {
-    // const requiredfields = {
-    //   fields: {
-    //     productId: { require: true },
-    //     imageOrder: { require: true },
-    //     file: { require: true },
-    //   },
-    // };
-    // Validator.validateInput(input, requiredfields);
-    const product = await this.productRepository.findById(input.productId);
-    if (!product) throw new NotFoundException('PRODUCT NOT FOUND');
-    const productImages = await this.productImageRepository.findAll(
-      input.productId,
-    );
-    if (productImages.length > 10)
-      throw new InternalServerErrorException(
-        'Too many images for one product! Limit: 10',
+    const requiredfields = {
+      fields: {
+        productId: { require: true },
+        imageOrder: { require: true },
+        file: { require: true },
+      },
+    };
+    Validator.validateInput(input, requiredfields);
+    input.imageOrder = Number(input.imageOrder);
+    try {
+      var productImages = await this.productImageRepository.findAll(
+        input.productId,
       );
-    const imageUrl = await this.imageCloudGateway.upload(input.productId, input.imageOrder, input.file);
+
+      if (productImages.length == 0) {
+        const newImage = await this.uploadProductImage(input);
+        return {
+          result: [newImage],
+          totalResults: 1,
+        };
+      }
+      const existingImage = productImages.find(
+        (img) => img.order === input.imageOrder,
+      );
+      if (existingImage) {
+        await this.imageCloudGateway.delete(input.productId, input.imageOrder);
+        await this.productImageRepository.delete(existingImage.id);
+        productImages = productImages.filter(
+          (img) => img.order !== input.imageOrder,
+        );
+      }
+      const newImage = await this.uploadProductImage(input);
+      productImages = [...productImages, newImage];
+      const sortedProductImages = productImages.sort(
+        (a, b) => a.order - b.order,
+      );
+      return {
+        result: sortedProductImages,
+        totalResults: sortedProductImages.length,
+      };
+    } catch (error) {
+      throw new InternalServerErrorException(`Data Save Error: ${error}`);
+    }
+  }
+
+  private async uploadProductImage(input: Input): Promise<ProductImage> {
+    const imageUrl = await this.imageCloudGateway.upload(
+      input.productId,
+      input.imageOrder,
+      input.file,
+    );
+    if (!imageUrl)
+      throw new InternalServerErrorException('Cloud Upload Error!');
     const newImage = await this.productImageRepository.create({
       productId: input.productId,
       url: imageUrl,
       order: input.imageOrder,
     });
-    const hasSameOrder = productImages.some(
-      (productImage) => productImage.order === newImage.order,
-    );
-    if (hasSameOrder)
-      throw new ConflictException('An image with this order already exists');
-    try {
-      await this.productImageRepository.save(newImage);
-    } catch (error) {
-      throw new InternalServerErrorException(`Data Save Error: ${error}`);
-    }
-    const sortedProductImages = productImages.sort((a, b) => a.order - b.order);
-    return {
-      result: sortedProductImages,
-      totalResults: sortedProductImages.length,
-    };
+    return await this.productImageRepository.save(newImage);
   }
 }
 
