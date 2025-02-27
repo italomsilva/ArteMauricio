@@ -9,24 +9,16 @@ export class ProductController {
   constructor(private readonly addImageUseCase: AddImageUseCase) {}
 
   @Post('add-image')
-  @UseInterceptors(FileInterceptor('file')) // O nome do campo no formulário deve ser 'file'
+  @UseInterceptors(FileInterceptor('file'))
   async addImage(
     @Body() body: { productId: string; imageOrder: number },
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log('Received File:', file);  // Debugando o arquivo recebido
-    console.log('Received Body:', body);  // Debugando o corpo da requisição
-
-    if (!file) {
-      throw new Error('No file uploaded');
-    }
-
     const input = {
       productId: body.productId,
       imageOrder: body.imageOrder,
-      file, // O arquivo enviado será automaticamente mapeado para a variável 'file'
+      file, 
     };
-
     return await this.addImageUseCase.execute(input);
   }
 }
