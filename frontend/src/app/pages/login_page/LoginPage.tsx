@@ -17,7 +17,7 @@ export default function LoginPage() {
       setToken(userToken);
       localStorage.setItem("authToken", userToken);
       setTimeout(() => {
-        window.location.href = "/contact/thanks";
+        window.location.href = "/adm/products";
       }, 5000);
     } else {
       alert("Erro no login. Verifique suas credenciais.");
@@ -26,7 +26,6 @@ export default function LoginPage() {
 
   return (
     <section className={styles.main_section}>
-      <p>Token {token}</p>
       <form onSubmit={(e)=>handleSubmit(e)} className={styles.form}>
         <MyInputAndLabel
           id="ilogin"

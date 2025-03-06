@@ -12,7 +12,8 @@ export class GetAllProductsUsecase {
   async execute(input: Input): Promise<Output> {
     const page = input.page? parseInt(input.page, 10): 1;
     const limit = input.limit? parseInt(input.limit, 10): 15;
-    const result = await this.productRepository.findAll(page, limit);
+    const searchQuery = decodeURIComponent(input.searchQuery);
+    const result = await this.productRepository.findAll(page, limit, searchQuery);
     return {
       result: result,
       totalResults: result.length,
@@ -23,6 +24,7 @@ export class GetAllProductsUsecase {
 type Input = {
   page: string;
   limit: string;
+  searchQuery?:string;
 };
 
 type Output = {

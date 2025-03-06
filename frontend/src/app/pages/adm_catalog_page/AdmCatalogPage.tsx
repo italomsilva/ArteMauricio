@@ -1,22 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./CatalogPage.module.css";
+import styles from "./AdmCatalogPage.module.css";
 import { Product } from "@/app/entities/Product";
-import MyCardProduct from "@/app/components/product/card_product/MyCardProduct";
 import { getProducts } from "../../controller/products/getProducts";
 import { FaArrowDown } from "react-icons/fa";
+import { GrAddCircle } from "react-icons/gr";
 import MySearchInput from "@/app/components/search_input/MySearchInput";
+import MyListTileProduct from "@/app/components/product/list_tile_product/MyListTileProduct";
 
-async function loadProducts(page: number, searchQuery: string): Promise<Product[]> {
+async function loadProducts(
+  page: number,
+  searchQuery: string
+): Promise<Product[]> {
   const result = await getProducts(page, searchQuery);
-  if(result.length==0){
-    window.alert('Nenhum produto encontrado.')
+  if (result.length == 0) {
+    window.alert("Nenhum produto encontrado.");
   }
   return result;
 }
 
-export default function CatalogPage() {
+export default function AdmCatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -26,7 +30,7 @@ export default function CatalogPage() {
     const fetchProducts = async () => {
       setLoading(true);
       const loadedProducts = await loadProducts(page, searchQuery);
-      
+
       if (page === 1) {
         setProducts(loadedProducts);
       } else {
@@ -51,10 +55,17 @@ export default function CatalogPage() {
   return (
     <div className={styles.main_section}>
       <MySearchInput onSearch={handleSearch} />
-      
-      <div className={styles.div_cards}>
+      <a className={styles.seemore_btn} href="/adm/create/product">
+        <span>Adicionar Novo Produto</span>
+        <GrAddCircle />
+      </a>
+
+      <div className={styles.div_list}>
         {products?.map((product, index) => (
-          <MyCardProduct key={Number(product.id)*index*Number(product.id)} product={product} />
+          <MyListTileProduct
+            key={Number(product.id) * index * Number(product.id)}
+            product={product}
+          />
         ))}
       </div>
 

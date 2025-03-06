@@ -30,17 +30,22 @@ export class MySqlProductRepository implements ProductRepository {
   async findAll(
     page: number = 1,
     limit: number = 15,
+    searchQuery?: string,
   ): Promise<Product[]> {
-    const results = await this.productRepository.find({
-      order: {
-        updatedAt: 'DESC',
-      },
-      skip: (page - 1) * limit,
-      take: limit,
-    });
-    return results;
+    const query = this.productRepository.createQueryBuilder('product')
+      .orderBy('product.updatedAt', 'DESC')
+      .skip((page - 1) * limit)
+      .take(limit);
+  
+    if (searchQuery) {
+      query.where('product.title LIKE :searchQuery OR product.description LIKE :searchQuery', {
+        searchQuery: `%${searchQuery}%`,
+      });
+    }
+  
+    return await query.getMany();
   }
-  findByCategories(category: string[]): Promise<Product[]> {
+    findByCategories(category: string[]): Promise<Product[]> {
     throw new Error('Method not implemented.');
   }
   async save(product: Product): Promise<Product> {

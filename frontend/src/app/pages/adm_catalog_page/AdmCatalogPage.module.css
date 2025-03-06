@@ -1,26 +1,17 @@
 .main_section{
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding-top: 80px;
-    width: 100%;
-    justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    justify-content: center;
+    padding: 80px 0.5rem 0 0.5rem;
+    row-gap: 0.5rem;
 }
 
-.main_section h2{
-    text-align: center;
-}
-
-.div_cards{
+.div_list{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 100%;
-    column-gap: 2vw;
-    padding: 2vw 0 2vw 1.5vw;
-    row-gap: 2vw;
+    flex-direction: column;
+    row-gap: 0.5rem;
 }
 
 .seemore_btn{

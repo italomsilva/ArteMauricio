@@ -1,4 +1,10 @@
-to_do: logica login
+todo:
+ - pag edit product
+ - pag create product
+ - styling create product btn in adm products page
+ - btn share
+ - thanks page
 
 
 preencher links
+future features: cache

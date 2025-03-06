@@ -3,6 +3,7 @@
     flex-direction: column;
     min-block-size: 100vh;
     justify-content: center;
+    background-color: white;
 }
 
 .image_cont {
@@ -35,12 +36,14 @@
 } 
 
 .section h3 {
-    text-indent: 2.4rem;
     color: var(--st-color);
+    text-align: center;
+    padding: 0.8rem;
 }
 
 .section p {
-    padding: 0.4rem;
+    padding: 0.8rem;
+    text-align: justify;
 }
 
 .section p a {

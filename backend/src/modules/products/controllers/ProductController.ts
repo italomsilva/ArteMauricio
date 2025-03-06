@@ -34,8 +34,9 @@ export class ProductController {
   async getAllProducts(
     @Query('page') page: string,
     @Query('limit') limit: string,
+    @Query('search') search:string,
   ): Promise<any> {
-    return await this.getAllProductsUseCase.execute({ page, limit });
+    return await this.getAllProductsUseCase.execute({ page, limit, searchQuery: search });
   }
   @Post('create')
   async createProduct(@Body() body): Promise<any> {
