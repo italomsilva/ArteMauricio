@@ -12,7 +12,7 @@ export default function Footer(){
                 <i><FaMailBulk/></i>
             </div>
             <div className={styles.nd}>
-            <p>Website feito por Dev.Italo</p>
+            <p>Website feito por <a href="/adm/login">Dev.Italo</a></p>
             </div>
         </footer>
     )

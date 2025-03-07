@@ -26,6 +26,7 @@ export class ImageController {
       productId: body.productId,
       imageOrder: body.imageOrder,
       file,
+      isMainPhoto: body.isMainPhoto
     };
     return await this.addImageUseCase.execute(input);
   }

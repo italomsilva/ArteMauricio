@@ -1,11 +1,12 @@
 'use client'
 
-import ProductPage from "@/app/pages/product_page/ProductPage"
+import EditProductPage from "@/app/pages/edit_product_page/EditProductPage"
+
 
 export default function Page(props:{params:{id:string}}){
     return(
         <main>
-            <ProductPage id={props.params.id}></ProductPage>
+            <EditProductPage id={props.params.id}></EditProductPage>
         </main>
     )
 }

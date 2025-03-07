@@ -8,7 +8,10 @@ import {
   Post,
   Put,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateProductUseCase } from 'src/core/usecases/product/CreateProduct';
 import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
 import { EditProductUseCase } from 'src/core/usecases/product/EditProduct';
@@ -34,17 +37,32 @@ export class ProductController {
   async getAllProducts(
     @Query('page') page: string,
     @Query('limit') limit: string,
-    @Query('search') search:string,
+    @Query('search') search: string,
   ): Promise<any> {
-    return await this.getAllProductsUseCase.execute({ page, limit, searchQuery: search });
+    return await this.getAllProductsUseCase.execute({
+      page,
+      limit,
+      searchQuery: search,
+    });
   }
   @Post('create')
   async createProduct(@Body() body): Promise<any> {
     return await this.createProductUseCase.execute(body);
   }
   @Put('edit')
-  async editProduct(@Body() body): Promise<any> {
-    return await this.editProductUseCase.execute(body);
+  @UseInterceptors(FileInterceptor('file'))
+  async editProduct(
+    @Body() body,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<any> {
+    const input = {
+      productId: body.productId,
+      title: body.title ?? null,
+      price: body.price ?? null,
+      description: body.description ?? null,
+      mainPhoto: file?? null,
+    };
+    return await this.editProductUseCase.execute(input);
   }
   @Delete('delete')
   async deleteProduct(@Body() body): Promise<any> {
