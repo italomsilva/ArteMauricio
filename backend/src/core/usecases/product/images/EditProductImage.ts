@@ -3,7 +3,6 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { ProductImage } from 'src/core/domain/entities/ProductImage';
 import { ImageCloudGateway } from 'src/core/domain/gateways/ImageCloudGateway';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
 import { Validator } from 'src/core/utils/validators/Validator';
@@ -24,34 +23,36 @@ export class EditProductImageUseCase {
       },
     };
     Validator.validateInput(input, requiredfields);
-    input.newOrder = Number(input.newOrder);
     try {
-      const currentImage = await this.productImageRepository.findById(
-        input.productImageId
+      const productImage = await this.productImageRepository.findById(
+        input.productImageId,
       );
-      const hasImageSameOrder =
-        await this.productImageRepository.findByIdAndOrder(
-          currentImage.productId,
-          input.newOrder,
-        );
-      if (hasImageSameOrder) {
-        await this.productImageRepository.delete(hasImageSameOrder.id);
-        await this.imageCloudGateway.delete(
-          currentImage.productId,
-          hasImageSameOrder.id,
-        );
+
+      if (input.newOrder) {
+        const hasImageSameOrder =
+          await this.productImageRepository.findByIdAndOrder(
+            productImage.productId,
+            input.newOrder,
+          );
+        if (hasImageSameOrder && hasImageSameOrder.id != input.productImageId) {
+          await this.productImageRepository.delete(hasImageSameOrder.id);
+          await this.imageCloudGateway.delete(
+            productImage.productId,
+            hasImageSameOrder.id,
+          );
+        }
       }
       if (input.file) {
         const url = await this.imageCloudGateway.upload(
-          currentImage.productId,
-          hasImageSameOrder.id,
+          productImage.productId,
+          productImage.id,
           input.file,
         );
-        currentImage.url = url;
+        productImage.url = url;
       }
-      await this.productImageRepository.update(currentImage.id, {
-        url: currentImage.url,
-        order: input.newOrder ?? currentImage.order,
+      await this.productImageRepository.update(productImage.id, {
+        url: productImage.url,
+        order: input.newOrder ?? productImage.order,
       });
       return {
         sucess: true,

@@ -20,18 +20,19 @@ export class DeleteImageUseCase {
   async execute(input: Input): Promise<Output> {
     const requiredfields = {
       fields: {
-        productId: { require: true },
-        imageOrder: { require: true },
+        productImageId: { require: true },
       },
     };
     Validator.validateInput(input, requiredfields);
-    const productImage = await this.productImageRepository.findByIdAndOrder(
-      input.productId,
-      input.imageOrder,
+    const productImage = await this.productImageRepository.findById(
+      input.productImageId,
     );
     if (!productImage) throw new NotFoundException('Image Not Found');
     if (productImage.url) {
-      await this.imageCloudGateway.delete(input.productId, productImage.id);
+      await this.imageCloudGateway.delete(
+        productImage.productId,
+        input.productImageId,
+      );
     }
     try {
       await this.productImageRepository.delete(productImage.id);
@@ -43,8 +44,7 @@ export class DeleteImageUseCase {
 }
 
 type Input = {
-  productId: string;
-  imageOrder: number;
+  productImageId: number;
 };
 type Output = {
   sucess: boolean;

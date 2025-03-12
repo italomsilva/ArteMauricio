@@ -11,7 +11,7 @@ export class JwtAuthTokenGateway implements AuthTokenGateway {
         payload,
         process.env.AUTH_TOKEN_SECRET_KEY,
         {
-            expiresIn: '1h',
+            expiresIn: '3h',
         }
     );
   }

@@ -49,9 +49,8 @@ export class ImageController {
     @UploadedFile() file: Express.Multer.File,
   ): Promise<any> {
     const input = {
-      productId: body.productId,
-      currentOrder: Number(body.currentOrder),
-      newOrder: body.newOrder ? Number(body.newOrder) : 0,
+      productImageId: Number(body.productImageId),
+      newOrder: body.newOrder ? Number(body.newOrder) : null,
       file,
     };
     return await this.editProductImageUseCase.execute(input);

@@ -54,7 +54,7 @@ export default function EditProductPage(props: { id: string }) {
     } else {
       alert("Erro ao excluir");
     }
-    history.back()
+    history.back();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,7 +70,6 @@ export default function EditProductPage(props: { id: string }) {
       description: inpDescription,
       mainPhoto: inpMainPhoto ?? null,
     });
-
     alert("Produto atualizado com sucesso!");
   };
 
@@ -146,10 +145,10 @@ export default function EditProductPage(props: { id: string }) {
             </div>
           </form>
           <div className={styles.link_btns}>
-            <a href="">
+            <a href={`/adm/edit/product/${props.id}/images`}>
               Editar fotos secundárias do produto <FaArrowRight />
             </a>
-            <a href="">
+            <a href={`/adm/edit/product/${props.id}/categories`}>
               Editar categorias do produto
               <FaArrowRight />
             </a>
