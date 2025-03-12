@@ -19,7 +19,6 @@ import { GetAllCategoriesUseCase } from 'src/core/usecases/product/categories/Ge
 import { ProductCategoryFilterUseCase } from 'src/core/usecases/product/categories/ProductCategoryFilter';
 import { AddImageUseCase } from 'src/core/usecases/product/images/AddImage';
 import { ImageController } from './controllers/ImageController';
-import { ChangeImageOrderUseCase } from 'src/core/usecases/product/images/ChangeImageOrder';
 import { DeleteImageUseCase } from 'src/core/usecases/product/images/DeleteImage';
 import { CreateProductUseCase } from 'src/core/usecases/product/CreateProduct';
 import { EditProductUseCase } from 'src/core/usecases/product/EditProduct';
@@ -27,6 +26,8 @@ import { DeleteProductUseCase } from 'src/core/usecases/product/DeleteProduct';
 import { AddProductCategoryUseCase } from 'src/core/usecases/product/categories/AddProductCategory';
 import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categories/DeleteProductCategory';
 import { CloudinaryGateway } from 'src/infra/gateway/CloudinaryGateway';
+import { GetAllImagesByProductIdUseCase } from 'src/core/usecases/product/images/GetAllImagesByProductId';
+import { EditProductImageUseCase } from 'src/core/usecases/product/images/EditProductImage';
 
 @Module({
   imports: [
@@ -71,8 +72,9 @@ import { CloudinaryGateway } from 'src/infra/gateway/CloudinaryGateway';
     AddProductCategoryUseCase,
     DeleteProductCategoryUsecase,
     AddImageUseCase,
-    ChangeImageOrderUseCase,
     DeleteImageUseCase,
+    GetAllImagesByProductIdUseCase,
+    EditProductImageUseCase
   ],
   controllers: [ProductController, CategoryController, ImageController],
 })

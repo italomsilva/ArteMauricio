@@ -28,56 +28,51 @@ export class AddImageUseCase {
     Validator.validateInput(input, requiredfields);
     input.imageOrder = Number(input.imageOrder);
     try {
-      var productImages = await this.productImageRepository.findAll(
-        input.productId,
-      );
-
-      if (productImages.length == 0) {
-        const newImage = await this.uploadProductImage(input);
-        return {
-          result: [newImage],
-          totalResults: 1,
-        };
-      }
-      const existingImage = productImages.find(
-        (img) => img.order === input.imageOrder,
-      );
-      if (existingImage) {
-        await this.imageCloudGateway.delete(input.productId, input.imageOrder);
-        await this.productImageRepository.delete(existingImage.id);
-        productImages = productImages.filter(
-          (img) => img.order !== input.imageOrder,
+      const hasImageSameOrder =
+        await this.productImageRepository.findByIdAndOrder(
+          input.productId,
+          input.imageOrder,
         );
+
+      if (hasImageSameOrder) {
+        const imageUrl = await this.imageCloudGateway.upload(
+          input.productId,
+          hasImageSameOrder.id,
+          input.file,
+        );
+
+        if (!imageUrl)
+          throw new InternalServerErrorException('Cloud Upload Error!');
+
+        await this.productImageRepository.update(hasImageSameOrder.id, {
+          url: imageUrl,
+        });
+        hasImageSameOrder.url = imageUrl;
+        return { result: hasImageSameOrder };
       }
-      const newImage = await this.uploadProductImage(input);
-      productImages = [...productImages, newImage];
-      const sortedProductImages = productImages.sort(
-        (a, b) => a.order - b.order,
+
+      const createProductImage = await this.productImageRepository.create({
+        order: input.imageOrder,
+        productId: input.productId,
+        url: '',
+      });
+      const newProductImage =
+        await this.productImageRepository.save(createProductImage);
+
+      const imageUrl = await this.imageCloudGateway.upload(
+        input.productId,
+        newProductImage.id,
+        input.file,
       );
-      return {
-        result: sortedProductImages,
-        totalResults: sortedProductImages.length,
-      };
+      newProductImage.url = imageUrl;
+
+      const result = await this.productImageRepository.save(newProductImage);
+      return { result };
     } catch (error) {
       throw new InternalServerErrorException(`Data Save Error: ${error}`);
     }
   }
 
-  private async uploadProductImage(input: Input): Promise<ProductImage> {
-    const imageUrl = await this.imageCloudGateway.upload(
-      input.productId,
-      input.imageOrder,
-      input.file,
-    );
-    if (!imageUrl)
-      throw new InternalServerErrorException('Cloud Upload Error!');
-    const newImage = await this.productImageRepository.create({
-      productId: input.productId,
-      url: imageUrl,
-      order: input.imageOrder,
-    });
-    return await this.productImageRepository.save(newImage);
-  }
 }
 
 type Input = {
@@ -87,6 +82,5 @@ type Input = {
 };
 
 type Output = {
-  result: ProductImage[];
-  totalResults: number;
+  result: ProductImage;
 };

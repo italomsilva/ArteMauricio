@@ -14,7 +14,7 @@ export class CloudinaryGateway implements ImageCloudGateway {
 
   async upload(
     productId: string,
-    order: number,
+    productImageId: number,
     file: Express.Multer.File,
     isMainphoto?: boolean,
   ): Promise<string> {
@@ -23,7 +23,7 @@ export class CloudinaryGateway implements ImageCloudGateway {
         .upload_stream(
           {
             folder: `products/${productId}`,
-            public_id: isMainphoto? `mainphoto`:`${order}`,
+            public_id: isMainphoto? `mainphoto`:`${productImageId}`,
             overwrite: true,
             resource_type: 'auto',
           },
@@ -36,8 +36,8 @@ export class CloudinaryGateway implements ImageCloudGateway {
     });
   }
 
-  async delete(productId: string, order: number): Promise<void> {
-    const publicId = `products/${productId}/${order}`;
+  async delete(productId: string, productImageId: number): Promise<void> {
+    const publicId = `products/${productId}/${productImageId}`;
     await cloudinary.uploader.destroy(publicId);
   }
   
@@ -46,10 +46,8 @@ export class CloudinaryGateway implements ImageCloudGateway {
   
     try {
       await cloudinary.api.delete_resources_by_prefix(folderPath);
-      console.log(`Arquivos em '${folderPath}' excluídos.`);
   
       await cloudinary.api.delete_folder(folderPath);
-      console.log(`Pasta '${folderPath}' excluída com sucesso.`);
     } catch (error) {
       console.error(`Erro ao excluir a pasta '${folderPath}':`, error);
     }

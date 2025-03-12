@@ -2,23 +2,34 @@ import {
   Body,
   Controller,
   Delete,
-  Patch,
+  Get,
+  Param,
   Post,
+  Put,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { AddImageUseCase } from 'src/core/usecases/product/images/AddImage';
-import { ChangeImageOrderUseCase } from 'src/core/usecases/product/images/ChangeImageOrder';
 import { DeleteImageUseCase } from 'src/core/usecases/product/images/DeleteImage';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { GetAllImagesByProductIdUseCase } from 'src/core/usecases/product/images/GetAllImagesByProductId';
+import { EditProductImageUseCase } from 'src/core/usecases/product/images/EditProductImage';
 
-@Controller('product/image')
+@Controller('product/images')
 export class ImageController {
   constructor(
     private readonly addImageUseCase: AddImageUseCase,
-    private readonly changeImageOrderUseCase: ChangeImageOrderUseCase,
+    private readonly editProductImageUseCase: EditProductImageUseCase,
     private readonly deleteImageUseCase: DeleteImageUseCase,
+    private readonly getAllImagesByProductIdUseCase: GetAllImagesByProductIdUseCase,
   ) {}
+  @Get(':productId')
+  async getAllImagesByProductId(@Param() params) {
+    return await this.getAllImagesByProductIdUseCase.execute({
+      productId: params.productId,
+    });
+  }
+
   @Post('add')
   @UseInterceptors(FileInterceptor('file'))
   async addImage(@Body() body: any, @UploadedFile() file: Express.Multer.File) {
@@ -26,15 +37,24 @@ export class ImageController {
       productId: body.productId,
       imageOrder: body.imageOrder,
       file,
-      isMainPhoto: body.isMainPhoto
+      isMainPhoto: body.isMainPhoto,
     };
     return await this.addImageUseCase.execute(input);
   }
 
-  @Patch('change-order')
-  async changeOrder(@Body() body): Promise<any> {
-    const result = await this.changeImageOrderUseCase.execute(body);
-    return result;
+  @Put('edit')
+  @UseInterceptors(FileInterceptor('file'))
+  async changeOrder(
+    @Body() body,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<any> {
+    const input = {
+      productId: body.productId,
+      currentOrder: Number(body.currentOrder),
+      newOrder: body.newOrder ? Number(body.newOrder) : 0,
+      file,
+    };
+    return await this.editProductImageUseCase.execute(input);
   }
 
   @Delete('delete')

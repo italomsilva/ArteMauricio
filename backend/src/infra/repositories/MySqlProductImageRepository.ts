@@ -12,9 +12,19 @@ export class MySqlProductImagesRepository implements ProductImageRepository {
     private productImagesRepository: Repository<ProductImage>,
   ) {}
   async findById(productImageId: number): Promise<ProductImage> {
-    return await this.productImagesRepository.findOne({
+    const result = await this.productImagesRepository.findOne({
       where: { id: productImageId },
     });
+    return result;
+  }
+  async findByIdAndOrder(
+    productId: string,
+    imageOrder: number,
+  ): Promise<ProductImage> {
+    const result = await this.productImagesRepository.findOne({
+      where: { productId: productId, order: imageOrder },
+    });
+    return result;
   }
   async create(input: any): Promise<ProductImage> {
     return await this.productImagesRepository.create({
@@ -26,6 +36,9 @@ export class MySqlProductImagesRepository implements ProductImageRepository {
   async findAll(productId: string): Promise<ProductImage[]> {
     return await this.productImagesRepository.find({
       where: { productId: productId },
+      order: {
+        order: 'ASC',
+      },
     });
   }
   async update(

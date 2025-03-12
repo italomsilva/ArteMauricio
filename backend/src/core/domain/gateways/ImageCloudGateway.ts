@@ -1,10 +1,10 @@
 export interface ImageCloudGateway {
   upload(
     productId: string,
-    order: number,
+    productImageId: number,
     file: Express.Multer.File,
     isMainphoto?: boolean,
   ): Promise<string>;
-  delete(productId: string, order: number): Promise<void>;
+  delete(productId: string, productImageId: number): Promise<void>;
   deleteAllProductImages(productId: string): Promise<void>;
 }
