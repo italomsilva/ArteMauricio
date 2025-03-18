@@ -35,7 +35,7 @@ export default function EditProductImagesPage(props: { productId: string }) {
 
   return loading ? (
     <div className={styles.div_loading}>
-      <MyLoading center={true} color="var(--st-color)" />
+      <MyLoading center={true} color="var(--st-color)" size="40vw"/>
     </div>
   ) : (
     <section className={styles.main_section}>

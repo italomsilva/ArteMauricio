@@ -28,6 +28,7 @@ import { DeleteProductCategoryUsecase } from 'src/core/usecases/product/categori
 import { CloudinaryGateway } from 'src/infra/gateway/CloudinaryGateway';
 import { GetAllImagesByProductIdUseCase } from 'src/core/usecases/product/images/GetAllImagesByProductId';
 import { EditProductImageUseCase } from 'src/core/usecases/product/images/EditProductImage';
+import { GetAllProductCategoriesUseCase } from 'src/core/usecases/product/categories/getAllProductCategories';
 
 @Module({
   imports: [
@@ -74,7 +75,8 @@ import { EditProductImageUseCase } from 'src/core/usecases/product/images/EditPr
     AddImageUseCase,
     DeleteImageUseCase,
     GetAllImagesByProductIdUseCase,
-    EditProductImageUseCase
+    EditProductImageUseCase,
+    GetAllProductCategoriesUseCase
   ],
   controllers: [ProductController, CategoryController, ImageController],
 })

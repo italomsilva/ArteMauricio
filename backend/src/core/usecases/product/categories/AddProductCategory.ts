@@ -27,8 +27,8 @@ export class AddProductCategoryUseCase{
         if(hasSameName){
             throw new ConflictException('The product already has this category');
         }
-        if(productCategories.length>4){
-            throw new InternalServerErrorException('Too many images for one product! Limit: 5')
+        if(productCategories.length>5){
+            throw new InternalServerErrorException('Too many categories for one product! Limit: 5')
         }
         const newProductCategory = await this.productCategoryRepository.create({
             productId: input.productId,
