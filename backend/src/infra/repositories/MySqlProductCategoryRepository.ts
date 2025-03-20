@@ -11,6 +11,9 @@ export class MySqlProductCategoryRepository implements ProductCategoryRepository
         @InjectRepository(ProductCategorySchema)
             private productCategoryRepository:Repository<ProductCategory>
     ){}
+    async deleteAllByCategoryName(categoryName: string): Promise<any> {
+        return await this.productCategoryRepository.delete({categoryName: categoryName})
+    }
     async findById(productCategoryId: number): Promise<ProductCategory> {
         return await this.productCategoryRepository.findOne({where:{id: productCategoryId}})
     }

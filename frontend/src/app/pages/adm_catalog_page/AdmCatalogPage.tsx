@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./AdmCatalogPage.module.css";
 import { Product } from "@/app/entities/Product";
 import { getProducts } from "../../controller/products/getProducts";
-import { FaArrowDown } from "react-icons/fa";
+import { FaArrowDown, FaArrowRight } from "react-icons/fa";
 import { GrAddCircle } from "react-icons/gr";
 import MySearchInput from "@/app/components/search_input/MySearchInput";
 import MyListTileProduct from "@/app/components/product/list_tile_product/MyListTileProduct";
@@ -55,11 +55,14 @@ export default function AdmCatalogPage() {
   return (
     <div className={styles.main_section}>
       <MySearchInput onSearch={handleSearch} />
+      <a className={styles.addproduct_btn} href="/adm/categories">
+        <span>Categorias</span>
+        <FaArrowRight />
+      </a>
       <a className={styles.addproduct_btn} href="/adm/create/product">
         <span>Adicionar Novo Produto</span>
         <GrAddCircle />
       </a>
-
       <div className={styles.div_list}>
         {products?.map((product, index) => (
           <MyListTileProduct

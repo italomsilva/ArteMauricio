@@ -8,4 +8,5 @@ export interface ProductCategoryRepository{
     update(productCategory:ProductCategory):Promise<ProductCategory>;
     save(productCategory:ProductCategory):Promise<any>;
     delete(productCategoryId:number):Promise<any>;
+    deleteAllByCategoryName(categoryName:string):Promise<any>;
 }
