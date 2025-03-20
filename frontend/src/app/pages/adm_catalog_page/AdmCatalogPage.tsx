@@ -55,13 +55,13 @@ export default function AdmCatalogPage() {
   return (
     <div className={styles.main_section}>
       <MySearchInput onSearch={handleSearch} />
-      <a className={styles.addproduct_btn} href="/adm/categories">
-        <span>Categorias</span>
-        <FaArrowRight />
-      </a>
       <a className={styles.addproduct_btn} href="/adm/create/product">
         <span>Adicionar Novo Produto</span>
         <GrAddCircle />
+      </a>
+      <a className={styles.addproduct_btn} href="/adm/categories">
+        <span>Categorias</span>
+        <FaArrowRight />
       </a>
       <div className={styles.div_list}>
         {products?.map((product, index) => (
