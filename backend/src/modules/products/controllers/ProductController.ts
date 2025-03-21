@@ -46,8 +46,18 @@ export class ProductController {
     });
   }
   @Post('create')
-  async createProduct(@Body() body): Promise<any> {
-    return await this.createProductUseCase.execute(body);
+  @UseInterceptors(FileInterceptor('file'))
+  async createProduct(
+    @Body() body,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<any> {
+    const input = {
+      title: body.title,
+      price: Number(body.price),
+      description: body.description??'',
+      mainPhoto: file??null,  
+    }
+    return await this.createProductUseCase.execute(input);
   }
   @Put('edit')
   @UseInterceptors(FileInterceptor('file'))
@@ -60,7 +70,7 @@ export class ProductController {
       title: body.title ?? null,
       price: body.price ?? null,
       description: body.description ?? null,
-      mainPhoto: file?? null,
+      mainPhoto: file ?? null,
     };
     return await this.editProductUseCase.execute(input);
   }
