@@ -26,6 +26,7 @@ export default function CreateProductPage() {
     } else {
       alert("Algo deu errado, tente novamente.");
     }
+    window.history.back();
   };
 
   const handleFileChange = async (

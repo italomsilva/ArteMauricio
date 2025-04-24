@@ -7,6 +7,8 @@ import { ProductCategorySchema } from "./schemas/ProductCategorySchema";
 @Module({
   imports: [
     TypeOrmModule.forRoot({
+      // type: 'postgres',
+      // url: process.env.DB_URL,
       type: 'mysql',
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),

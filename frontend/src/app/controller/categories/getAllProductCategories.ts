@@ -4,6 +4,7 @@ export async function getAllProductCategories(productId:string): Promise<Product
   const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/categories/product/${productId}`;
   try {
     const response = await fetch(url, {
+      next: { revalidate: 3600 },
       method: "GET",
       headers: {
         "Content-Type": "application/json",

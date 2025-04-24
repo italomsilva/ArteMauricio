@@ -15,9 +15,6 @@ export class CheckLoggedMiddleware implements NestMiddleware{
                 token,
                 process.env.AUTH_TOKEN_SECRET_KEY
             );
-            req.body.decodedToken = {
-                login: decodedToken.login
-            }
             next();
         } catch (error) {
             return res.status(400).send({ error: 'invalid session' });

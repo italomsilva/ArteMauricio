@@ -17,7 +17,7 @@ export const ProductSchema = new EntitySchema<Product>({
       nullable: false,
     },
     price: {
-      type: 'double',
+      type: 'double precision', 
       default: -3.14,
     },
     description: {
@@ -35,11 +35,11 @@ export const ProductSchema = new EntitySchema<Product>({
       type: 'timestamp',
       updateDate: true,
     },
-    mainPhoto:{
-      name:'main_photo',
-      type:'varchar',
+    mainPhoto: {
+      name: 'main_photo',
+      type: 'varchar',
       length: 255,
-      nullable: true
-    }
+      nullable: true,
+    },
   },
 });

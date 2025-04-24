@@ -23,7 +23,7 @@ export async function createProduct(input: {
       body: formData,
     });
 
-    if (!response.ok) {
+    if (response.status != 201) {
       throw new Error(`Erro: ${response.status} - ${response.statusText}`);
     }
 
