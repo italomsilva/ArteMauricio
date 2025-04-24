@@ -1,8 +1,23 @@
+import { useState, useEffect } from "react";
 import TitleSection from "@/app/components/TitleSection";
 import MyButton from "@/app/components/MyButton";
 import styles from "./AboutSection.module.css";
 import Link from "next/link";
+
 export default function AboutSection() {
+  const [fontSize, setFontSize] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setFontSize(window.innerWidth < 1024 ? null : "2.8rem");
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <section id="section_sobre" className={styles.section}>
       <TitleSection
@@ -11,6 +26,7 @@ export default function AboutSection() {
         highLightColor="var(--st-color)"
         textColor="var(--nd-color)"
         uniqueKey={300}
+        size={fontSize}
       />
       <div className={styles.image_cont}>
         <MyButton classNm={null} link="#">

@@ -11,7 +11,7 @@
     flex-direction: column;
     block-size: 30vh;
     inline-size: 100%;
-    background: url('../../../images/bg_main_home.jpeg') #1f363d7c;
+    background: url('../../../images/bg_main_home3.jpeg') #1f363d7c;
     background-size: cover;
     background-position: center;
     background-blend-mode: darken;
@@ -67,4 +67,50 @@
 .mybtn a:hover{
     background-color: #4dd3ca50;
     color: var(--st-color);
+}
+
+@media (min-width: 1024px) {
+
+    .section{
+        padding: 4rem 0;
+    }
+    .image_cont {
+        block-size: 50vh;
+        background-size: auto 400%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: darken;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .image_cont a{
+        font-size: 1.2rem;
+        background-color: var(--st-color-36);
+        color: var(--st-color);
+        border: 3px solid var(--st-color);
+        letter-spacing: 0px;
+    }
+
+    .image_cont a:hover{
+        letter-spacing: 3px;
+    }
+
+    .section h3 {
+        font-size: 2.4rem;
+    }
+    .section p {
+        font-size: 1.2rem;
+        text-indent: 2rem;
+    }
+
+    .btn {
+        margin-bottom: 2.4rem;
+    }
+    .mybtn a{
+        font-size: 1.2rem;
+        padding: 0.2rem 1.8rem ;
+        border: 3px solid var(--st-color);
+    }
 }
