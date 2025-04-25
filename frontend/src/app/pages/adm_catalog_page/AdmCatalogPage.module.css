@@ -49,6 +49,7 @@
     background-color: var(--st-color);
     border-radius: 0.5rem;
     border: 2px solid var(--st-color);
+    cursor: pointer;
     text-align: center;
 }
 
@@ -56,4 +57,13 @@
     background-color: var(--st-color-36);
     color: var(--st-color-89);
     border: none;
+}
+
+@media (min-width: 1024px){
+     .div_list{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 1rem;
+        column-gap: 1rem;
+    }
 }

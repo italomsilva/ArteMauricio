@@ -72,35 +72,36 @@ export default function ProductPage(props: { id: string }) {
               </div>
             )}
 
-            <Swiper slidesPerView={1}>
-              <SwiperSlide>
-                <img
-                  src={product.mainPhoto}
-                  key={product.id}
-                  onLoad={() => setIsImageLoading(false)}
-                  style={
-                    isImageLoading ? { display: "none" } : { display: "flex" }
-                  }
-                />
-              </SwiperSlide>
-
-              {product.images.map((item) => {
-                return (
-                  <SwiperSlide>
-                    <img
-                      src={item.url}
-                      key={item.order}
-                      onLoad={() => setIsImageLoading(false)}
-                      style={
-                        isImageLoading
-                          ? { display: "none" }
-                          : { display: "flex" }
-                      }
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+            <div className={styles.slide}>
+              <Swiper slidesPerView={1}>
+                <SwiperSlide>
+                  <img
+                    src={product.mainPhoto}
+                    key={product.id}
+                    onLoad={() => setIsImageLoading(false)}
+                    style={
+                      isImageLoading ? { display: "none" } : { display: "flex" }
+                    }
+                  />
+                </SwiperSlide>
+                {product.images.map((item) => {
+                  return (
+                    <SwiperSlide>
+                      <img
+                        src={item.url}
+                        key={item.order}
+                        onLoad={() => setIsImageLoading(false)}
+                        style={
+                          isImageLoading
+                            ? { display: "none" }
+                            : { display: "flex" }
+                        }
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
           </picture>
           <div className={styles.div_text}>
             <p className={styles.p_price}>R$ {product.price}</p>

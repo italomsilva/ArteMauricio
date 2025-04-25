@@ -44,3 +44,7 @@
     color: var(--st-color-89);
     border: none;
 }
+
+@media (min-width: 1024px){
+    
+}

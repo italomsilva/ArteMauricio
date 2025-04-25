@@ -1,6 +1,6 @@
 .section_home {
     background-color: var(--nd-color);
-    background: url('../../../images/mb1.jpeg') #1f363d9f;
+    background: url('../../../images/person-expo2.jpeg') #1f363d9f;
     background-position: center;
     background-blend-mode: darken;
     background-size: cover;
@@ -91,7 +91,7 @@
 
 @media (min-width: 1024px){
     .section_home {
-        background: url('../../../images/bg_main_home2.jpeg') #1f363dd2;
+        background: url('../../../images/table.jpeg') #1f363dd2;
         background-size: cover;
         background-blend-mode: darken;
     }

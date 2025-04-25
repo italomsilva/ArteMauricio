@@ -61,3 +61,29 @@
     background-color: var(--nd-color);
     color: var(--contrast-color);
 }
+.main_section{
+    background: url('../../images/table2.jpeg') #1f363dbb;
+    background-size: cover;
+    background-position: top right;
+    background-blend-mode: darken;
+}
+
+@media (min-width: 1024px){
+
+
+    .form{
+        max-width: 1024px;
+        padding: 2%;
+    }
+    .textinput label{
+        font-size: 2rem;
+    }
+
+    .textinput input{
+        font-size: 1.5rem;
+    }
+
+    .btn_submit input{
+        font-size: 1.5rem;
+    }
+}

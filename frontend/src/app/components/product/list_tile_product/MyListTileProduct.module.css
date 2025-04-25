@@ -18,3 +18,14 @@
     font-weight: normal;
     font-size: 1rem;
 }
+
+@media (min-width: 1024px) {
+    .list_tile{
+        display: flex;
+        width: 100%;
+    }
+
+    .list_tile:hover{
+        background-color: var(--st-color-36);
+    }
+}

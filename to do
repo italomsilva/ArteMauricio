@@ -5,5 +5,13 @@ todo:
  - tratar imagens nulas
 
 
+ - pages:
+    - adm cat
+    - create prod
+    - edit prod cat
+    - edit prod img
+    - error
+
+
 preencher links
 future features: cache

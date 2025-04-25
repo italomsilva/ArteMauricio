@@ -16,9 +16,10 @@ export default function LoginPage() {
     if (userToken) {
       setToken(userToken);
       localStorage.setItem("authToken", userToken);
+      alert("Login realizado com sucesso!");
       setTimeout(() => {
         window.location.href = "/adm/products";
-      }, 5000);
+      }, 500);
     } else {
       alert("Erro no login. Verifique suas credenciais.");
     }
