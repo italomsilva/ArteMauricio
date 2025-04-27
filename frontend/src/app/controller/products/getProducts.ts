@@ -6,7 +6,7 @@ export async function getProducts(
 ): Promise<Product[]> {
   const url = `${
     process.env.NEXT_PUBLIC_BASE_URL_BACKEND
-  }/products?page=${page}&limit=30&search=${encodeURIComponent(searchQuery)}`;
+  }/products?page=${page}&limit=28&search=${encodeURIComponent(searchQuery)}`;
   try {
     const response = await fetch(url, {
       method: "GET",

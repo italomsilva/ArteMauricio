@@ -85,6 +85,33 @@
     letter-spacing: 8px;
 }
 
+@media (min-width: 1024px) {
+    
+    .form_add_product{
+        max-width: 1024px;
+    }
+
+    .form_add_product h1{
+        font-size: 2.4rem;
+    }
+
+    .inp_txt label{
+        font-size: 1.4rem;
+    }
+
+    .inp_txt input{
+        font-size: 1.2rem;
+    }
+
+    .inp_file label{
+        font-size: 1.4rem;
+    } 
+
+    .btn_sub{
+        font-size: 1.4rem;
+    }
+}
+
 
 
 
