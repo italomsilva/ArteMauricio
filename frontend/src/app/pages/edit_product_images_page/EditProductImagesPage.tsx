@@ -23,7 +23,6 @@ export default function EditProductImagesPage(props: { productId: string }) {
   const token = localStorage.getItem("authToken");
   useEffect(() => {
     const fetchImages = async () => {
-      const token = localStorage.getItem("authToken");
       const loadedImages = await loadProductImages(props.productId, token!);
       if (loadedImages.length !== 0) {
         setImages(loadedImages);

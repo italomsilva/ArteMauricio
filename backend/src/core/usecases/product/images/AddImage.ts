@@ -2,10 +2,12 @@ import {
   Inject,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { ProductImage } from 'src/core/domain/entities/ProductImage';
 import { ImageCloudGateway } from 'src/core/domain/gateways/ImageCloudGateway';
 import { ProductImageRepository } from 'src/core/domain/repositories/ProductImageRepository';
+import { ProductRepository } from 'src/core/domain/repositories/ProductRepository';
 import { Validator } from 'src/core/utils/validators/Validator';
 
 @Injectable()
@@ -15,6 +17,8 @@ export class AddImageUseCase {
     private readonly productImageRepository: ProductImageRepository,
     @Inject('imageCloudGateway')
     private readonly imageCloudGateway: ImageCloudGateway,
+    @Inject('productRepository')
+    private readonly productRepository: ProductRepository,
   ) {}
 
   async execute(input: Input): Promise<Output> {
@@ -27,7 +31,10 @@ export class AddImageUseCase {
     };
     Validator.validateInput(input, requiredfields);
     input.imageOrder = Number(input.imageOrder);
-    try {
+      const product = await this.productRepository.findById(input.productId);
+      if (!product) {
+        throw new NotFoundException('Product not found!');
+      }
       const hasImageSameOrder =
         await this.productImageRepository.findByIdAndOrder(
           input.productId,
@@ -68,11 +75,7 @@ export class AddImageUseCase {
 
       const result = await this.productImageRepository.save(newProductImage);
       return { result };
-    } catch (error) {
-      throw new InternalServerErrorException(`Data Save Error: ${error}`);
-    }
   }
-
 }
 
 type Input = {
