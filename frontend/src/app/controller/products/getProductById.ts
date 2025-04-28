@@ -1,25 +1,28 @@
-export async function getProductById(id: string): Promise<GetProductByIdOutput | null> {
+import { ErrorResponse } from "@/app/entities/ErrorResponse";
+
+export async function getProductById(
+  id: string
+): Promise<GetProductByIdOutput | ErrorResponse> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}/products/${id}`;
-  console.log(url)
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key-value": `${process.env.NEXT_PUBLIC_APIKEY_VALUE}`,
-      },
-    });
+  console.log(url);
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key-value": `${process.env.NEXT_PUBLIC_APIKEY_VALUE}`,
+    },
+  });
 
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status} - ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Erro na requisição:", error);
-    return null;
+  const data = await response.json();
+  if (!response.ok || !data) {
+    return new ErrorResponse(
+      data.statusCode,
+      data.message,
+      data.error,
+    );
   }
+
+  return data;
 }
 
 export type GetProductByIdOutput = {

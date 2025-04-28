@@ -8,7 +8,6 @@ import styles from "./ProductPage.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaShareNodes } from "react-icons/fa6";
 import Link from "next/link";
-import ProductNotFoundErrorPage from "../errors/ProductNotFoundErrorPage";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MyLoading from "@/app/components/loading/MyLoading";
@@ -19,33 +18,60 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-
-async function loadProduct(id: string): Promise<GetProductByIdOutput | null> {
-  const result = await getProductById(id);
-  return result;
-}
+import { ErrorResponse } from "@/app/entities/ErrorResponse";
+import ErrorPage from "../errors/ErrorPage";
 
 export default function ProductPage(props: { id: string }) {
-  const [product, setProduct] = useState<GetProductByIdOutput | null>();
+  const [product, setProduct] = useState<GetProductByIdOutput | null>(null);
+  const [error, setError] = useState<ErrorResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [isImageLoading, setIsImageLoading] = useState(true);
+
+  const loadProduct = async (
+    id: string
+  ): Promise<GetProductByIdOutput | ErrorResponse> => {
+    const result = await getProductById(id);
+    return result;
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       const loadedProduct = await loadProduct(props.id);
-      setProduct(loadedProduct);
+      if (loadedProduct instanceof ErrorResponse) {
+        setError(loadedProduct);
+        setProduct(null);
+      } else {
+        setProduct(loadedProduct);
+        setError(null);
+      }
       setLoading(false);
     };
     fetchProducts();
   }, []);
 
-  return (
-    <div className={styles.main_div}>
-      {loading ? (
-        <div className={styles.div_loading}>
-          <MyLoading color="var(--st-color)" size="30vw"></MyLoading>
-        </div>
-      ) : product ? (
+  if (loading) {
+    return (
+      <div className={styles.div_loading}>
+        <MyLoading color="var(--st-color)" size="30vw"></MyLoading>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div>
+        <ErrorPage
+          error={error.error}
+          message={error.message}
+          statusCode={error.statusCode}
+          backTo="/catalog"
+        />
+      </div>
+    );
+  }
+
+  if (product) {
+    return (
+      <div className={styles.main_div}>
         <section className={styles.main_section}>
           <div className={styles.div_header}>
             <Link
@@ -72,7 +98,7 @@ export default function ProductPage(props: { id: string }) {
               </div>
             )}
 
-            <div className={styles.slide}>
+            <div className={styles.slide} style={{ display: isImageLoading ? "none" : "block" }}>
               <Swiper slidesPerView={1}>
                 <SwiperSlide>
                   <img
@@ -106,13 +132,13 @@ export default function ProductPage(props: { id: string }) {
           <div className={styles.div_text}>
             <p className={styles.p_price}>R$ {product.price}</p>
             <h2 className={styles.p_title}>{product.title}</h2>
-            <a href="#" className={styles.btn_comp}>Comprar</a>
+            <a href="#" className={styles.btn_comp}>
+              Comprar
+            </a>
             <p className={styles.p_descr}>{product.description}</p>
           </div>
         </section>
-      ) : (
-        <ProductNotFoundErrorPage />
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 }
