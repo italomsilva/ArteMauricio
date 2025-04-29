@@ -122,4 +122,22 @@
         height: 60vh;
     }
 
+
+    .p_price{
+        font-size: 2rem;
+    }
+
+    .p_title{
+        font-size: 2rem;
+    }
+
+    .p_descr{
+        font-size: 1.5rem;
+    }
+
+    .btn_comp{
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+
 }

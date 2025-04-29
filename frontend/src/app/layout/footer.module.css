@@ -15,7 +15,14 @@
     align-items: center;
 }
 
-.st i {
+.st a {
     color: var(--st-color);
     font-size: 1.6rem;
+}
+
+.st a:hover {
+    color: var(--st-color-89);
+}
+.st a:visited {
+    color: var(--st-color-36);
 }

@@ -28,8 +28,8 @@ export default function Header() {
             <a href="/contact">Contato</a>
           </li>
           <li className={styles.social_icons}>
-            <a href=""><FaInstagram/></a>
-            <a href=""><FaWhatsapp/></a>
+            <a target="_blank" href="https://www.instagram.com/arte_mauricio_"><FaInstagram/></a>
+            <a target="_blank" href=""><FaWhatsapp/></a>
           </li>
         </menu>
         <div onClick={()=>setActive(!active)} className={styles.menu_burguer} >

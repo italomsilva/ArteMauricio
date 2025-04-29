@@ -34,6 +34,18 @@ export default function ProductPage(props: { id: string }) {
     return result;
   };
 
+  const getBuyUrl = (title: string, price: number): string => {
+    const titleUrl = encodeURIComponent(`*"${title}"*`);
+    const priceUrl = encodeURIComponent(`${price.toFixed(2)}`);
+    // const currentUrl = encodeURIComponent(window.location.href);
+    const currentUrl = encodeURIComponent(`https://www.artemauricio.com.br/products/${props.id}`);
+    const numeroWhatsapp = "5585991289947";
+
+    const link = `https://wa.me/${numeroWhatsapp}?text=Oi!%20Me%20interessei%20pelo%20produto%20${titleUrl}%20que%20vi%20no%20site,%20com%20o%20preço%20de%20R$%20${priceUrl}.%20Ele%20ainda%20está%20disponível%3F%0A%0AProduto:%20${currentUrl}`;
+
+    return link;
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       const loadedProduct = await loadProduct(props.id);
@@ -98,7 +110,10 @@ export default function ProductPage(props: { id: string }) {
               </div>
             )}
 
-            <div className={styles.slide} style={{ display: isImageLoading ? "none" : "block" }}>
+            <div
+              className={styles.slide}
+              style={{ display: isImageLoading ? "none" : "block" }}
+            >
               <Swiper slidesPerView={1}>
                 <SwiperSlide>
                   <img
@@ -132,7 +147,11 @@ export default function ProductPage(props: { id: string }) {
           <div className={styles.div_text}>
             <p className={styles.p_price}>R$ {product.price}</p>
             <h2 className={styles.p_title}>{product.title}</h2>
-            <a href="#" className={styles.btn_comp}>
+            <a
+              href={getBuyUrl(product.title, product.price)}
+              className={styles.btn_comp}
+              target="_blank"
+            >
               Comprar
             </a>
             <p className={styles.p_descr}>{product.description}</p>
