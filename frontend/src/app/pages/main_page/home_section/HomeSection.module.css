@@ -1,0 +1,117 @@
+.section_home {
+    background-color: var(--nd-color);
+    background: url('../../../images/person-expo2.jpeg') #1f363d9f;
+    background-position: center;
+    background-blend-mode: darken;
+    background-size: cover;
+    min-block-size: 101vh;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.maincont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.section_home img {
+    inline-size: 60%;
+}
+
+.section_home h1 {
+    color: var(--contrast-color);
+    font-size: 3.2rem;
+}
+
+.section_home p {
+    color: var(--st-color);
+    font-size: 1.2rem;
+    padding: 0 1rem;
+}
+
+.div_btns {
+    margin-block-start: 3.2rem;
+    inline-size: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 10%;
+    font-size: 1.2rem;
+}
+
+
+.btn_one a {
+    background-color: var(--st-color);
+    padding: 0.2rem 1.8rem;
+    border: 2px solid var(--st-color);
+    transition: all 0.5s;
+    border-radius: 0.4rem;
+    color: var(--nd-color);
+}
+
+.btn_one a:hover {
+    background-color: var(--st-color-36);
+    color: var(--st-color);
+}
+
+.btn_two a {
+    color: var(--nd-color);
+    background-color: var(--contrast-color);
+    padding: 0.2rem 1.8rem;
+    border: 2px solid var(--contrast-color);
+    border-radius: 0.4rem;
+    transition: all 0.5s;
+}
+
+.btn_two a:hover {
+    background-color: #EDEBA036;
+    color: var(--contrast-color);
+}
+
+.footer_home span {
+    font-size: 3.2rem;
+    color: var(--st-color-89);
+    position: relative;
+    animation: moveUpDown 0.8s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes moveUpDown {
+    0% {
+        inset-block-start: 0;
+    }
+
+    100% {
+        inset-block-start: -1.6rem;
+    }
+}
+
+@media (min-width: 1024px){
+    .section_home {
+        background: url('../../../images/table.jpeg') #1f363dd2;
+        background-size: cover;
+        background-blend-mode: darken;
+    }
+    .section_home img {
+        inline-size: 70%;
+    }
+    .section_home h1 {
+        font-size: 4rem;
+    }
+    .section_home p {
+        font-size: 1.4rem;
+    }
+    .div_btns {
+        margin-block-start: 4rem;
+        inline-size: 100%;
+        display: flex;
+        justify-content: center;
+        column-gap: 10%;
+        font-size: 1.6rem;
+    }
+}

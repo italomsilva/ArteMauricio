@@ -1,0 +1,116 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100vh;
+    justify-content: center;
+    background-color: white;
+}
+
+.image_cont {
+    display: flex;
+    flex-direction: column;
+    block-size: 30vh;
+    inline-size: 100%;
+    background: url('../../../images/family-expo.jpeg') #1f363d7c;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0.8rem;
+    margin: 1.8rem 0;
+}
+
+.image_cont a {
+    background-color: var(--st-color);
+    padding: 0.2rem 0.8rem;
+    color: #fff;
+    border: 2px solid var(--st-color);
+    border-radius: 0.4rem;
+    transition: 0.8s;
+}
+
+.image_cont a:hover{
+    background-color: #4dd3ca36;
+    color: var(--st-color);
+} 
+
+.section h3 {
+    color: var(--st-color);
+    text-align: center;
+    padding: 0 0.8rem;
+}
+
+.section p {
+    padding: 0 0.8rem 0.5rem 0.8rem;
+    text-align: justify;
+}
+
+.section p a {
+    color: var(--st-color);
+}
+.btn {
+    display: flex;
+    margin-bottom: 1.4rem;
+    align-self: center;
+}
+.mybtn a{
+    font-size: 0.8rem;
+    background-color: var(--st-color);
+    padding: 0.2rem 1.3rem ;
+    color: #ffffff;
+    border-radius: 0.4rem;
+    transition: all 0.5s;
+    border: 2px solid var(--st-color);
+}
+
+.mybtn a:hover{
+    background-color: #4dd3ca50;
+    color: var(--st-color);
+}
+
+@media (min-width: 1024px) {
+
+    .section{
+        padding: 4rem 0;
+    }
+    .image_cont {
+        block-size: 50vh;
+        background-size: auto 400%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-blend-mode: darken;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .image_cont a{
+        font-size: 1.2rem;
+        background-color: var(--st-color-36);
+        color: var(--st-color);
+        border: 3px solid var(--st-color);
+        letter-spacing: 0px;
+    }
+
+    .image_cont a:hover{
+        letter-spacing: 3px;
+    }
+
+    .section h3 {
+        font-size: 2.4rem;
+    }
+    .section p {
+        font-size: 1.2rem;
+        text-indent: 2rem;
+    }
+
+    .btn {
+        margin-bottom: 2.4rem;
+    }
+    .mybtn a{
+        font-size: 1.2rem;
+        padding: 0.2rem 1.8rem ;
+        border: 3px solid var(--st-color);
+    }
+}

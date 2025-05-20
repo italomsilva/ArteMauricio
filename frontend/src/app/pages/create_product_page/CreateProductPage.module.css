@@ -1,0 +1,117 @@
+.main_section{
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    min-height: 100vh;
+    background-color: var(--light-bg-color);
+    align-items: center;
+    justify-content: center;
+    color: var(--nd-color);
+}
+
+.form_add_product{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--st-color-36);
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--st-color);
+    row-gap: 0.5rem;
+    width: 90vw;
+}
+
+.form_add_product h1{
+    text-align: center;
+}
+
+.inp_txt{
+    display: flex;
+    flex-direction: column;
+}
+
+.inp_txt label{
+    font-weight: bold;
+}
+
+.inp_txt input{
+    border: 2px solid var(--st-color-89);
+    background-color: var(--light-bg-color);
+    font-weight: bold;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+.inp_file{
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+}
+
+.inp_file label{
+    background-color: var(--st-color);
+    display: flex;
+    border: 2px solid var(--st-color);
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.inp_file label:hover{
+    background-color: var(--st-color-89);
+}
+
+.inp_file p{
+    overflow: hidden;
+}
+
+
+.btn_sub{
+    background-color: var(--st-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--st-color);
+    letter-spacing: 2px;
+    transition: all 0.3s;
+}
+.btn_sub:hover{
+    background-color: var(--st-color-89);
+    letter-spacing: 8px;
+}
+
+@media (min-width: 1024px) {
+    
+    .form_add_product{
+        max-width: 1024px;
+    }
+
+    .form_add_product h1{
+        font-size: 2.4rem;
+    }
+
+    .inp_txt label{
+        font-size: 1.4rem;
+    }
+
+    .inp_txt input{
+        font-size: 1.2rem;
+    }
+
+    .inp_file label{
+        font-size: 1.4rem;
+    } 
+
+    .btn_sub{
+        font-size: 1.4rem;
+    }
+}
+
+
+
+

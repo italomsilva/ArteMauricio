@@ -1,0 +1,15 @@
+@keyframes loadingRotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: loadingRotate linear infinite 0.8s;
+}
